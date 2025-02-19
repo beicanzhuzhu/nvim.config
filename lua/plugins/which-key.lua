@@ -15,9 +15,6 @@ return {
       end,
       desc = "Buffer Local Keymaps (which-key)",
     },
-    { "<leader>r", "<cmd>Autorun<CR>",         desc = "Run your code" },
-    { "<leader>e", "<cmd>Neotree toggle<CR>",  desc = "Explorer" },
-    { "<leader>R", "<cmd>Autodap<CR>",         desc = "Dap your cpp code" },
   },
 
 }
