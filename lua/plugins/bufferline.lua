@@ -12,7 +12,13 @@ return {
           separator = true,
           highlight = "PanelHeading",
           padding = 1,
-        }
+        },
+        {
+          filetype = "lazy",
+          text = "Lazy",
+          highlight = "PanelHeading",
+          padding = 1,
+        },
       }
     },
   }
