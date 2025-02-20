@@ -15,6 +15,7 @@ return {
       width = 20,
       mappings = {
         ["l"] = "open",
+        ["h"] = "navigate_up",
       }
     }
   }
