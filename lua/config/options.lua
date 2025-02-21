@@ -20,6 +20,9 @@ opt.autoindent = true
 
 opt.iskeyword:append("-")
 
+opt.showmode = false
+opt.cursorline = true
+
 opt.wrap = false
 
 -- 设置撤销文件的保存路径
