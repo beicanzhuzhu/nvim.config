@@ -1,16 +1,33 @@
+local opt = vim.opt
+
 vim.cmd [[colorscheme tokyonight-moon]]
 
-vim.opt.number = true
+opt.number = true
 
-vim.opt.relativenumber = true
+opt.relativenumber = true
 
-vim.opt.whichwrap = "<,>,[,],h,l"
-vim.opt.splitbelow = true -- open new vertical split bottom
-vim.opt.splitright = true -- open new horizontal splits right
+opt.whichwrap = "<,>,[,],h,l"
+opt.splitbelow = true -- open new vertical split bottom
+opt.splitright = true -- open new horizontal splits right
 
-vim.opt.mouse = 'a'
+opt.mouse = 'a'
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
+
+opt.iskeyword:append("-")
+
+opt.wrap = false
+
+-- 设置撤销文件的保存路径
+local undodir = vim.fn.stdpath("data") .. "/undodir"
+if vim.fn.isdirectory(undodir) == 0 then
+  -- 如果不存在就创建这个文件夹
+  vim.fn.mkdir(undodir, "p")
+end
+opt.undodir = undodir
+-- 启用持久化撤销
+opt.undofile = true

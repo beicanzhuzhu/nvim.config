@@ -1,4 +1,6 @@
 return {
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
@@ -90,6 +92,18 @@ return {
 
     --     lspconfig['lua_ls'].setup({ capabilities = capabilities })
     --   end
-  }
+  },
+
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
 
 }
