@@ -71,11 +71,10 @@ require("which-key").add({
 		desc = "Dap Pause",
 	},
 	{
-		"<leader>U",
+		"<leader>u",
 		"<cmd>lua require'dapui'.toggle({reset = true})<cr>",
 		desc = "Dap Toggle UI",
 	},
-
 	{ mode = { "v" }, { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment line" } },
 
 	{ mode = { "n" }, { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment line" } },

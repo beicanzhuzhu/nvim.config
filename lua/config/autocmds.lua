@@ -1,3 +1,9 @@
+local autosavefiletype={
+  "*.cpp",
+  "*.c",
+  "*.py",
+}
+
 vim.api.nvim_create_autocmd('VimEnter',
   {
     pattern = { '*' },
@@ -13,6 +19,6 @@ vim.api.nvim_create_autocmd('VimEnter',
 
 vim.api.nvim_create_autocmd('InsertLeave',
   {
-    pattern = { '*' },
+    pattern = autosavefiletype,
     command = 'w'
   })
