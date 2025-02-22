@@ -36,44 +36,9 @@ require("which-key").add({
 		desc = "Explorer",
 	},
 	{
-		"<leader>R",
-		"<cmd>Autodap<CR>",
-		desc = "Dap your cpp code",
-	},
-	{
 		"<leader>f",
 		"<cmd>Format<CR>",
 		desc = "Format your code",
-	},
-	{
-		"<leader>t",
-		"<cmd>lua require'dap'.toggle_breakpoint()<cr>",
-		desc = "Dap Toggle Breakpoint",
-	},
-	{
-		"<leader>b",
-		"<cmd>lua require'dap'.step_back()<cr>",
-		desc = "Dap Step Back",
-	},
-	{
-		"<leader>c",
-		"<cmd>lua require'dap'.continue()<cr>",
-		desc = "Dap Continue",
-	},
-	{
-		"<leader>o",
-		"<cmd>lua require'dap'.step_over()<cr>",
-		desc = "Dap Step Over",
-	},
-	{
-		"<leader>p",
-		"<cmd>lua require'dap'.pause()<cr>",
-		desc = "Dap Pause",
-	},
-	{
-		"<leader>u",
-		"<cmd>lua require'dapui'.toggle({reset = true})<cr>",
-		desc = "Dap Toggle UI",
 	},
 	{
 		"<leader>t",

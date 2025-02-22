@@ -3,8 +3,6 @@ return {
   dependencies = {
     {
       'akinsho/toggleterm.nvim',
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
     },
   },
   opts = {
