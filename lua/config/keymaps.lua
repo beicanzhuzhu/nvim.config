@@ -75,6 +75,11 @@ require("which-key").add({
 		"<cmd>lua require'dapui'.toggle({reset = true})<cr>",
 		desc = "Dap Toggle UI",
 	},
+	{
+		"<leader>t",
+		"<cmd>:ToggleTerm direction=float<CR>",
+		desc = "Open float term",
+	},
 	{ mode = { "v" }, { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment line" } },
 
 	{ mode = { "n" }, { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment line" } },
