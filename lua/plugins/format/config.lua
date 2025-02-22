@@ -1,10 +1,18 @@
 require("conform").setup({
   -- Map of filetype to formatters
+
+
+  formatters = {
+    clang_format = {
+      prepend_args = {"--style=Microsoft"},
+    }
+  },
+
   formatters_by_ft = {
 
-    c = { "clang-format" },
+    c = { "clang_format" },
 
-    cpp = { "clang-format" },
+    cpp = { "clang_format" },
 
     lua = { "stylua" },
     -- Conform will run multiple formatters sequentially
