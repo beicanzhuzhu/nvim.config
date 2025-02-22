@@ -1,3 +1,5 @@
+vim.opt.termguicolors = true
+
 return {
   'akinsho/bufferline.nvim',
   version = "*",
