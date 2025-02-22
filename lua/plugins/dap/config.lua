@@ -1,4 +1,6 @@
-local dap, dapui = require("dap"), require("dapui")
+local dap = require("dap")
+
+dap.set_log_level("ERROR")
 
 dap.adapters.lldb = {
   type = 'executable',
