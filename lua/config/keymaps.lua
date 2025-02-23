@@ -25,27 +25,32 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, si
 
 require("which-key").add({
 
-	{
-		"<leader>r",
-		"<cmd>Autorun<CR>",
-		desc = "Run your code",
-	},
-	{
-		"<leader>e",
-		"<cmd>Neotree toggle<CR>",
-		desc = "Explorer",
-	},
-	{
-		"<leader>f",
-		"<cmd>Format<CR>",
-		desc = "Format your code",
-	},
-	{
-		"<leader>t",
-		"<cmd>:ToggleTerm direction=float<CR>",
-		desc = "Open float term",
-	},
-	{ mode = { "v" }, { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment line" } },
+  {
+    "<leader>r",
+    "<cmd>Autorun<CR>",
+    desc = "Run your code",
+  },
+  {
+    "<leader>d",
+    "<cmd>Autogdb<CR>",
+    desc = "Use cgdb to debug your cpp code!"
+  },
+  {
+    "<leader>e",
+    "<cmd>Neotree toggle<CR>",
+    desc = "Explorer",
+  },
+  {
+    "<leader>f",
+    "<cmd>Format<CR>",
+    desc = "Format your code",
+  },
+  {
+    "<leader>t",
+    "<cmd>:ToggleTerm direction=float<CR>",
+    desc = "Open float term",
+  },
+  { mode = { "v" }, { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment line" } },
 
-	{ mode = { "n" }, { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment line" } },
+  { mode = { "n" }, { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment line" } },
 })
