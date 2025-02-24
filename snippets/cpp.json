@@ -1,18 +1,48 @@
 {
-  "code": {
-    "prefix": "code",
+  "luogu": {
+    "prefix": "luogu",
     "body": [
-      "// Create by ShangYJQ.",
+      "// Create by BCYZ.",
       "// ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
       "",
       "#include <bits/stdc++.h>",
       "using namespace std;",
+      "using u64=uint64_t;",
+      "using i64=int64_t;",
       "",
-      "int main(){",
+      "int main()",
+      "{",
       "\t$1",
+      "",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "Start code!"
+  },
+
+}
+"cf": {
+    "prefix": "cf",
+    "body": [
+      "// Create by BCYZ.",
+      "// ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "",
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "using u64=uint64_t;",
+      "using i64=int64_t;",
+      "",
+      "void solve()",
+      "{",
+      "\t$1",
+      "}",
+      "",
+      "int main()",
+      "{",
+      "\int t;cin>>t;",
+      "while(t--) solve();",
       "\treturn 0;",
       "}"
     ],
     "description": "Start code!"
   }
-}
