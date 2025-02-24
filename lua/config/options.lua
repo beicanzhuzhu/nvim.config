@@ -18,6 +18,9 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = true
 
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+
 opt.iskeyword:append("-")
 
 opt.showmode = false
