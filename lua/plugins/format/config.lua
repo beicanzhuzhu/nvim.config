@@ -4,7 +4,7 @@ require("conform").setup({
 
   formatters = {
     clang_format = {
-      prepend_args = {"--style=Microsoft"},
+      prepend_args = { "--style=Microsoft" },
     }
   },
 
@@ -15,6 +15,8 @@ require("conform").setup({
     cpp = { "clang_format" },
 
     lua = { "stylua" },
+
+    json = { "clang_format" },
     -- Conform will run multiple formatters sequentially
     go = { "goimports", "gofmt" },
     -- You can also customize some of the format options for the filetype

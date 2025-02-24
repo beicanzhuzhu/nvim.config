@@ -25,16 +25,14 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, si
 
 require("which-key").add({
 
-  {
-    "<leader>r",
-    "<cmd>Autorun<CR>",
-    desc = "Run your code",
-  },
-  {
-    "<leader>d",
-    "<cmd>Autogdb<CR>",
-    desc = "Use cgdb to debug your cpp code!"
-  },
+
+  { "<leader>r",  group = "Autorun" },
+  { "<leader>rr", "<cmd>Autorun<CR>",     desc = "Run your code" },
+  { "<leader>rd", "<cmd>Autogdb<CR>",     desc = "Use cgdb to debug your cpp code" },
+  { "<leader>ra", "<cmd>Autoaddtest<CR>", desc = "Add running test" },
+  { "<leader>rt", "<cmd>Autoruntest<CR>", desc = "Run your code using test" },
+  { "<leader>rx", "<cmd>Autodeltest<CR>", desc = "Del all json test" },
+
   {
     "<leader>e",
     "<cmd>Neotree toggle<CR>",
