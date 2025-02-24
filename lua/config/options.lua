@@ -34,3 +34,5 @@ end
 opt.undodir = undodir
 -- 启用持久化撤销
 opt.undofile = true
+
+opt.shadafile = "NONE"

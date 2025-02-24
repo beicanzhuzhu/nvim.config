@@ -1,5 +1,6 @@
 return {
   'ShangYJQ/autorun.nvim',
+  event = "VeryLazy",
   dependencies = {
     {
       'akinsho/toggleterm.nvim',
