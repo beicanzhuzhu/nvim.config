@@ -8,8 +8,12 @@
       "#include <bits/stdc++.h>",
       "using namespace std;",
       "",
-      "int main(){",
+      "int main()",
+      "{",
+      "\tcin.tie(nullptr)->sync_with_stdio(false);",
+      "\t",
       "\t$1",
+      "\t",
       "\treturn 0;",
       "}"
     ],
