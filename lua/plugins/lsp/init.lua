@@ -6,25 +6,19 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = 'rafamadriz/friendly-snippets',
 
-    -- use a release tag to download pre-built binaries
     version = '*',
     opts = {
       keymap = {
         preset = 'none',
+
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<cr>'] = { 'accept', 'fallback' },
 
-        -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
-        -- ['<Tab>'] = { 'select_next', 'fallback' },
+        ['C-Down'] = { 'scroll_documentation_down', 'fallback' },
+        ['C-Up'] = { 'scroll_documentation_up', 'fallback' },
 
-        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-
-        ['Down'] = { 'scroll_documentation_down', 'fallback' },
-        ['Up'] = { 'scroll_documentation_up', 'fallback' },
-
-        ['<Tab>'] = { 'select_next', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        ['<Tab>'] = { 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
