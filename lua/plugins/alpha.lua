@@ -23,9 +23,10 @@ return {
 
     dashboard.section.header.val = vim.split(logo, "\n")
     -- stylua: ignore
+    
     dashboard.section.buttons.val = {
       dashboard.button("n", " " .. " New file", [[<cmd> ene <BAR> startinsert <cr>]]),
-      dashboard.button("c", " " .. " Config", "<cmd> Neotree ~/.config/nvim <cr>"),
+      dashboard.button("c", " " .. " Config", "<cmd> edit " .. vim.fn.stdpath("config") .. "/init.lua <cr>"),
       dashboard.button("s", " " .. " Lazy Sync", "<cmd> Lazy sync <cr>"),
       dashboard.button("l", "󰒲 " .. " Lazy", "<cmd> Lazy <cr>"),
       dashboard.button("q", " " .. " Quit", "<cmd> qa <cr>"),
