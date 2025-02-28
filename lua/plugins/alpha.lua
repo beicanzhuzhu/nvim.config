@@ -25,6 +25,7 @@ return {
     -- stylua: ignore    
     dashboard.section.buttons.val = {
       dashboard.button("n", " " .. " New file", [[<cmd> ene <BAR> startinsert <cr>]]),
+      dashboard.button("b", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
       dashboard.button("c", " " .. " Config", "<cmd> edit " .. vim.fn.stdpath("config") .. "/init.lua | Neotree "..vim.fn.stdpath("config").." <cr>"),
       dashboard.button("s", " " .. " Lazy Sync", "<cmd> Lazy sync <cr>"),
       dashboard.button("l", "󰒲 " .. " Lazy", "<cmd> Lazy <cr>"),

@@ -32,6 +32,13 @@ require("which-key").add({
   { "<leader>rt", "<cmd>Autoruntest<CR>", desc = "Run your code using test" },
   { "<leader>rx", "<cmd>Autodeltest<CR>", desc = "Del all json test" },
   {
+    "<leader>s",
+    function()
+      require("persistence").select()
+    end,
+    desc = "Select session"
+  },
+  {
     "<leader>e",
     "<cmd>Neotree toggle<CR>",
     desc = "Explorer",
