@@ -8,7 +8,7 @@ return {
 
     version = '*',
     opts = {
-      keymap = {
+      keymap     = {
         preset = 'none',
 
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -23,6 +23,22 @@ return {
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
 
+      },
+      cmdline    = {
+        keymap = {
+        preset = 'none',
+          ['<Tab>'] = {
+            function(cmp)
+              if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then return cmp.accept() end
+            end,
+            'show_and_insert',
+            'select_next',
+          },
+          ['<S-Tab>'] = { 'show_and_insert', 'select_prev' },
+
+          ['<C-n>'] = { 'select_and_accept' },
+          ['<C-e>'] = { 'cancel' },
+        }
       },
 
       appearance = {
@@ -47,8 +63,8 @@ return {
         },
         ghost_text = { enabled = true },
       },
-      signature = { window = { border = 'single' } },
-      sources = {
+      signature  = { window = { border = 'single' } },
+      sources    = {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'markdown' },
         providers = {
           markdown = {
