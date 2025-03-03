@@ -39,3 +39,16 @@ opt.undodir = undodir
 opt.undofile = true
 
 opt.shadafile = "NONE"
+
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+
+opt.smoothscroll = true
