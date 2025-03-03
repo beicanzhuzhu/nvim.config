@@ -1,7 +1,7 @@
 return {
   'Civitasv/cmake-tools.nvim',
+  ft = "cmake",
   opts = {},
-
   config = function()
     local osys = require("cmake-tools.osys")
     require("cmake-tools").setup {
