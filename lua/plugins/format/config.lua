@@ -16,6 +16,12 @@ require("conform").setup({
 
     lua = { "stylua" },
 
+    html = { "prettier" },
+
+    css = { "prettier" },
+
+    javascript = { "prettier" },
+
     json = { "clang_format" },
     -- Conform will run multiple formatters sequentially
     go = { "goimports", "gofmt" },
