@@ -16,6 +16,8 @@ return {
       mappings = {
         ["l"] = "open",
         ["h"] = "navigate_up",
+        ["."] = "toggle_hidden",
+        ["H"] = "set_root";
       }
     },
     filesystem = {
