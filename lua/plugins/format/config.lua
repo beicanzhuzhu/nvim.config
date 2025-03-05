@@ -14,6 +14,8 @@ require("conform").setup({
 
     cpp = { "clang_format" },
 
+    cmake = {},
+
     lua = { "stylua" },
 
     html = { "prettier" },

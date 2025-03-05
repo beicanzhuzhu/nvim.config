@@ -89,6 +89,7 @@ return {
         clangd = { cmd = { "clangd", "--query-driver=**" } },
         html = {},
         pyright = {},
+        cmake = {},
       }
     },
     config = function(_, opts)
