@@ -14,7 +14,15 @@ require("conform").setup({
 
     cpp = { "clang_format" },
 
+    cmake = {},
+
     lua = { "stylua" },
+
+    html = { "prettier" },
+
+    css = { "prettier" },
+
+    javascript = { "prettier" },
 
     json = { "clang_format" },
     -- Conform will run multiple formatters sequentially

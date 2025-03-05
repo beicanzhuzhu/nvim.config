@@ -26,7 +26,7 @@ return {
       },
       cmdline    = {
         keymap = {
-        preset = 'none',
+          preset = 'none',
           ['<Tab>'] = {
             function(cmp)
               if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then return cmp.accept() end
@@ -86,13 +86,10 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        clangd = {
-          cmd = {
-            "clangd",
-            "--query-driver=**"
-          }
-        },
+        clangd = { cmd = { "clangd", "--query-driver=**" } },
+        html = {},
         pyright = {},
+        cmake = {},
       }
     },
     config = function(_, opts)
