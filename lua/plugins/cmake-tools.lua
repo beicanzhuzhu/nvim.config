@@ -1,6 +1,6 @@
 return {
   'Civitasv/cmake-tools.nvim',
-  ft = "cmake",
+  event = "VeryLazy",
   opts = {},
   config = function()
     local osys = require("cmake-tools.osys")
