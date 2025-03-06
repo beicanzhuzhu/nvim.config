@@ -20,7 +20,10 @@ vim.api.nvim_create_autocmd('VimEnter',
 vim.api.nvim_create_autocmd('InsertLeave',
   {
     pattern = autosavefiletype,
-    command = 'w'
+    callback = function()
+      vim.fn.execute("silent! write")
+      vim.notify("Auto save the file.", vim.log.levels.INFO, {})
+    end
   })
 
 vim.api.nvim_create_autocmd("CmdlineEnter", {
