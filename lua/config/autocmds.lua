@@ -64,3 +64,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "rust", "haskell", "cpp" },
+  callback = function()
+    vim.schedule(function()
+      vim.keymap.set("i", "<C-;>", "::", { buffer = true })
+    end)
+  end,
+})
