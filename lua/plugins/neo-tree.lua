@@ -17,7 +17,10 @@ return {
         ["l"] = "open",
         ["h"] = "navigate_up",
         ["."] = "toggle_hidden",
-        ["H"] = "set_root";
+        ["H"] = "set_root",
+        ["c"] = "copy_to_clipboard",
+        ["z"] = "close_all_nodes",
+        ["Z"] = "expand_all_nodes",
       }
     },
     filesystem = {
