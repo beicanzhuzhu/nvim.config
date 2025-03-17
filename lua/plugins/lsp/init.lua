@@ -1,3 +1,11 @@
+local lsp_server = {
+  lua_ls = {},
+  clangd = { cmd = { "clangd", "--query-driver=**", "--header-insertion=never" } },
+  html = {},
+  pyright = {},
+  cmake = {},
+}
+
 return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
@@ -84,13 +92,7 @@ return {
 
     -- example using `opts` for defining servers
     opts = {
-      servers = {
-        lua_ls = {},
-        clangd = { cmd = { "clangd", "--query-driver=**", "--header-insertion=never" } },
-        html = {},
-        pyright = {},
-        cmake = {},
-      }
+      servers = lsp_server
     },
     config = function(_, opts)
       local lspconfig = require('lspconfig')
