@@ -86,7 +86,7 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        clangd = { cmd = { "clangd", "--query-driver=**" } },
+        clangd = { cmd = { "clangd", "--query-driver=**", "--header-insertion=never" } },
         html = {},
         pyright = {},
         cmake = {},
