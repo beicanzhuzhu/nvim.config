@@ -23,6 +23,9 @@ vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { noremap = true, silent = tru
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "d", "\"_d", { noremap = true, silent = true })
+vim.keymap.set("v", "d", "\"_d", { noremap = true, silent = true })
+
 require("which-key").add({
 
 	{ "<leader>r", group = "Autorun" },
