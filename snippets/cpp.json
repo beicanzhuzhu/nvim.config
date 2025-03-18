@@ -24,11 +24,11 @@
         "body": [
             "inline int read()",
             "{",
-            "\tint x = 0,f = 1;",
+            "\tint x = 0, f = 1;",
             "\tchar c = getchar();",
             "\twhile (c < '0' || c > '9')",
             "\t{",
-            "\t\tif(c == '-')",
+            "\t\tif (c == '-')",
             "\t\t\tf = -1;",
             "\t\tc = getchar();",
             "\t}",
@@ -37,7 +37,7 @@
             "\t\tx = (x << 1) + (x << 3) + (c ^ 48);",
             "\t\tc = getchar();",
             "\t}",
-            "\treturn x*f;",
+            "\treturn x * f;",
             "}",
             "$1"
         ],
