@@ -1,3 +1,4 @@
+local tablen = 4
 local opt = vim.opt
 
 vim.cmd [[colorscheme tokyonight-moon]]
@@ -12,9 +13,9 @@ opt.splitright = true -- open new horizontal splits right
 
 opt.mouse = 'a'
 
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
+opt.tabstop = tablen
+opt.softtabstop = tablen
+opt.shiftwidth = tablen
 opt.expandtab = true
 opt.autoindent = true
 
