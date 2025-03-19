@@ -32,8 +32,8 @@ opt.wrap = false
 -- 设置撤销文件的保存路径
 local undodir = vim.fn.stdpath("data") .. "/undodir"
 if vim.fn.isdirectory(undodir) == 0 then
-  -- 如果不存在就创建这个文件夹
-  vim.fn.mkdir(undodir, "p")
+    -- 如果不存在就创建这个文件夹
+    vim.fn.mkdir(undodir, "p")
 end
 opt.undodir = undodir
 -- 启用持久化撤销
@@ -44,12 +44,12 @@ opt.shadafile = "NONE"
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+    foldopen = "",
+    foldclose = "",
+    fold = " ",
+    foldsep = " ",
+    diff = "╱",
+    eob = " ",
 }
 
 opt.smoothscroll = true
