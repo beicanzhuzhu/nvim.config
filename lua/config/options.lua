@@ -29,7 +29,7 @@ opt.cursorline = true
 
 opt.wrap = false
 
-vim.diagnostic.config({virtual_text = true})
+vim.diagnostic.config({ virtual_text = true })
 
 -- 设置撤销文件的保存路径
 local undodir = vim.fn.stdpath("data") .. "/undodir"
@@ -55,3 +55,15 @@ opt.fillchars = {
 }
 
 opt.smoothscroll = true
+
+local signs = {
+    Error = "", -- Nerd Font中的错误图标
+    Warn = "", -- Nerd Font中的警告图标
+    Hint = "", -- Nerd Font中的提示图标
+    Info = "" -- Nerd Font中的信息图标
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
