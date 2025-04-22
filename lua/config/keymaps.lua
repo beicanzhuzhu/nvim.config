@@ -23,7 +23,7 @@ vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", { noremap = true, silent = tru
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<S-s>", ":lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<S-s>", ":lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "d", "\"_d", { noremap = true, silent = true })
 vim.keymap.set("v", "d", "\"_d", { noremap = true, silent = true })

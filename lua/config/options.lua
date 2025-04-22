@@ -29,6 +29,8 @@ opt.cursorline = true
 
 opt.wrap = false
 
+vim.diagnostic.config({virtual_text = true})
+
 -- 设置撤销文件的保存路径
 local undodir = vim.fn.stdpath("data") .. "/undodir"
 if vim.fn.isdirectory(undodir) == 0 then
