@@ -12,6 +12,7 @@ return {
                 "lua",
                 "python",
                 "rust",
+                "markdown_inline",
             },
             sync_install = true,
             highlight = { enable = true },

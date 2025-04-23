@@ -31,18 +31,26 @@ vim.keymap.set("v", "d", "\"_d", { noremap = true, silent = true })
 require("which-key").add({
 
     { "<leader>r",  group = "Autorun" },
-    { "<leader>rr", "<cmd>Autorun<CR>",         desc = "Run your code" },
-    { "<leader>rd", "<cmd>Autogdb<CR>",         desc = "Use cgdb to debug your cpp code" },
-    { "<leader>ra", "<cmd>Autoaddtest<CR>",     desc = "Add running test" },
-    { "<leader>rt", "<cmd>Autoruntest<CR>",     desc = "Run your code using test" },
-    { "<leader>rx", "<cmd>Autodeltest<CR>",     desc = "Del all json test" },
+    { "<leader>rr", "<cmd>Autorun<CR>",                    desc = "Run your code" },
+    { "<leader>rd", "<cmd>Autogdb<CR>",                    desc = "Use cgdb to debug your cpp code" },
+    { "<leader>ra", "<cmd>Autoaddtest<CR>",                desc = "Add running test" },
+    { "<leader>rt", "<cmd>Autoruntest<CR>",                desc = "Run your code using test" },
+    { "<leader>rx", "<cmd>Autodeltest<CR>",                desc = "Del all json test" },
 
     { "<leader>m",  group = "Cmake-tools" },
-    { "<leader>mg", "<cmd>CMakeGenerate<CR>",   desc = "CMake generate" },
-    { "<leader>mr", "<cmd>CMakeQuickRun<CR>",   desc = "CMake run" },
-    { "<leader>mb", "<cmd>CMakeBuild<CR>",      desc = "CMake build" },
-    { "<leader>ms", "<cmd>CMakeQuickStart<CR>", desc = "CMake quick start" },
+    { "<leader>mg", "<cmd>CMakeGenerate<CR>",              desc = "CMake generate" },
+    { "<leader>mr", "<cmd>CMakeQuickRun<CR>",              desc = "CMake run" },
+    { "<leader>mb", "<cmd>CMakeBuild<CR>",                 desc = "CMake build" },
+    { "<leader>ms", "<cmd>CMakeQuickStart<CR>",            desc = "CMake quick start" },
+    { "<leader>x",  "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
 
+    {
+        "<leader>w",
+        function()
+            vim.lsp.buf.code_action()
+        end,
+        desc = "Fix your code"
+    },
     {
         "<leader>s",
         function()
