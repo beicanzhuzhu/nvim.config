@@ -27,6 +27,10 @@ opt.iskeyword:append("-")
 opt.showmode = false
 opt.cursorline = true
 
+vim.o.foldmethod = 'marker'
+vim.o.foldmarker = '<<<,>>>'
+vim.o.foldlevel = 99
+
 opt.wrap = false
 
 -- 设置撤销文件的保存路径

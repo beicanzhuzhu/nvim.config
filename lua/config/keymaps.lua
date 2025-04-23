@@ -42,6 +42,7 @@ require("which-key").add({
     { "<leader>mr", "<cmd>CMakeQuickRun<CR>",              desc = "CMake run" },
     { "<leader>mb", "<cmd>CMakeBuild<CR>",                 desc = "CMake build" },
     { "<leader>ms", "<cmd>CMakeQuickStart<CR>",            desc = "CMake quick start" },
+
     { "<leader>x",  "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
 
     {
