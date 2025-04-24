@@ -71,9 +71,7 @@ require("which-key").add({
     },
     {
         "<leader>t",
-        "<cmd>:ToggleTerm direction=float<CR>",
+        "<cmd>ToggleTerm direction=float<CR>",
         desc = "Open float term",
     },
-    { mode = { "v" }, { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment line" } },
-    { mode = { "n" }, { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment line" } },
 })
