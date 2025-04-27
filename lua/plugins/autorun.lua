@@ -1,5 +1,6 @@
 return {
     'ShangYJQ/autorun.nvim',
+    enabled = true,
     event = "VeryLazy",
     dependencies = {
         {
