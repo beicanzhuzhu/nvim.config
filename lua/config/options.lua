@@ -27,8 +27,10 @@ opt.iskeyword:append("-")
 opt.showmode = false
 opt.cursorline = true
 
-vim.o.foldmethod = 'marker'
-vim.o.foldmarker = '<<<,>>>'
+-- vim.o.foldmethod = 'marker'
+-- vim.o.foldmarker = '<<<,>>>'
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldlevel = 99
 
 opt.wrap = false
