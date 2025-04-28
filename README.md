@@ -3,5 +3,6 @@
 ## It use modern plugins,which to boost your start time
 
 `Install`
-1. git clone
-2. rename the dir name to nvim
+1. Ensure you have installed git clang and neovim v0.11
+2. git clone https://github.com/ShangYJQ/nvim.config.git ~/.config/nvim && nvim
+3. Run nvim again and check.
