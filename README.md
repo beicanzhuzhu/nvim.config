@@ -4,5 +4,9 @@
 
 `Install`
 1. Ensure you have installed git clang and neovim v0.11
-2. git clone https://github.com/ShangYJQ/nvim.config.git ~/.config/nvim && nvim
+2. Run `git clone https://github.com/ShangYJQ/nvim.config.git ~/.config/nvim && nvim` in your shell
 3. Run nvim again and check.
+
+`Tip`
+1. Please check `lua/config/keymaps.lua`
+2. The plugin `autorun.nvim` is just for personal use and it maybe only can run on linux
