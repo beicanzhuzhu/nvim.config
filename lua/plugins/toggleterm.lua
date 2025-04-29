@@ -4,6 +4,6 @@ return {
     version = "*",
     config = true,
     opts = {
-        shell = "/bin/bash",
+        shell = vim.o.shell,
     },
 }
