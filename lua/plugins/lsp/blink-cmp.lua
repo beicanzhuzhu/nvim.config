@@ -4,7 +4,10 @@ return {
         -- optional: provides snippets for the snippet source
         dependencies = 'rafamadriz/friendly-snippets',
 
-        version = '*',
+        version = '1.*',
+        --- @module 'blink.cmp'
+        --- @type blink.cmp.Config
+
         opts = {
             keymap     = {
                 preset = 'none',
@@ -38,7 +41,6 @@ return {
                     ['<C-e>'] = { 'cancel' },
                 }
             },
-
             appearance = {
                 use_nvim_cmp_as_default = true,
                 nerd_font_variant = 'mono'
@@ -72,8 +74,8 @@ return {
                     },
                 },
             },
+            fuzzy      = { implementation = "prefer_rust" },
         },
-
         opts_extend = { "sources.default" }
     }
 }
