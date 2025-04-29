@@ -12,9 +12,12 @@ return {
                 "markdown_inline",
             },
             compilers = { "clang" },
+            sync_install = true,
             highlight = { enable = true },
             indent = { enable = true },
+            auto_install = true,
+            ignore_install = { "javascript" },
         })
-        require("nvim-treesitter.install").compilers = {"clang"}
+        require("nvim-treesitter.install").compilers = { "clang" }
     end
 }
