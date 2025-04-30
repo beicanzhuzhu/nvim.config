@@ -11,7 +11,7 @@ local lsp_server = {
         }
     },
     html = {},
-    pyright = {},
+    basedpyright = {},
     cmake = {},
 }
 
