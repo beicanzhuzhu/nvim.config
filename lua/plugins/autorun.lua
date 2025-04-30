@@ -1,9 +1,3 @@
-local py_interpreter_name = "python3"
-
-if not vim.fn.has("unix") then
-    py_interpreter_name = "python"
-end
-
 return {
     'ShangYJQ/autorun.nvim',
     enabled = true,
@@ -14,8 +8,8 @@ return {
         },
     },
     opts = {
-        py_exec = py_interpreter_name,
-        cpp_c = "clang++",
-        c_c = "clang",
+        py_exec = vim.g.py_exec,
+        cpp_c = vim.g.cpp_c,
+        c_c = vim.g.c_c,
     }
 }

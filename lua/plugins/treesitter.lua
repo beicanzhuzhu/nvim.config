@@ -18,6 +18,6 @@ return {
             auto_install = true,
             ignore_install = { "javascript" },
         })
-        require("nvim-treesitter.install").compilers = { "clang" }
+        require("nvim-treesitter.install").compilers = { vim.g.c_c }
     end
 }
