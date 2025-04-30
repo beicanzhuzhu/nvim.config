@@ -9,4 +9,5 @@
 
 `Tip`
 1. Please check `lua/config/keymaps.lua`
-2. The plugin `autorun.nvim` is just for personal use and it maybe only can run on linux
+2. The plugin `autorun.nvim` is just for personal use,so it is just a very simple plugin.
+3. you need to install some lsp server like:`basedpyright` `clangd` `lua_ls` and so on.
