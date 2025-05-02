@@ -23,6 +23,6 @@ require("config.autocmds")
 
 -- check if run in neovide
 if vim.g.neovide then
-    print("Config for neovide")
+    vim.notify("Config for neovide")
     require("config.neovide")
 end

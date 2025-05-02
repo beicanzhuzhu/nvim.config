@@ -8,10 +8,10 @@ local optional_plugins = {
 
 -- if run in neovide
 if not vim.g.neovide then
-    print("Not running in Neovide, loading smear-cursor...")
+    vim.notify("Not running in Neovide, loading smear-cursor...")
     table.insert(optional_plugins, require("plugins.optional.smear-cursor"))
 else
-    print("Running in Neovide, disable smear-cursor.")
+    vim.notify("Running in Neovide, disable smear-cursor.")
 end
 
 -- if set LLM_LEY
@@ -19,7 +19,7 @@ if vim.env.LLM_KEY ~= "" and vim.env.LLM_KEY ~= nil then
     print("Enable llm.nvim")
     table.insert(optional_plugins, require("plugins.optional.llm"))
 else
-    print("You can set LLM_KEY to use llm.nvim plugin")
+    vim.notify("You can set LLM_KEY to use llm.nvim plugin")
 end
 
 return optional_plugins
