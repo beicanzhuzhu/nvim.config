@@ -28,7 +28,8 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, si
 vim.keymap.set("n", "d", "\"_d", { noremap = true, silent = true })
 vim.keymap.set("v", "d", "\"_d", { noremap = true, silent = true })
 
-require("which-key").add({
+-- which-key key maps
+local whick_key = {
 
     { "<leader>r",  group = "Autorun" },
     { "<leader>rr", "<cmd>Autorun<CR>",                    desc = "Run your code" },
@@ -59,19 +60,23 @@ require("which-key").add({
         end,
         desc = "Select session",
     },
-    {
-        "<leader>e",
-        "<cmd>Neotree toggle<CR>",
-        desc = "Explorer",
-    },
-    {
-        "<leader>f",
-        "<cmd>Format<CR>",
-        desc = "Format your code",
-    },
-    {
-        "<leader>t",
-        "<cmd>ToggleTerm direction=float<CR>",
-        desc = "Open float term",
-    },
-})
+    { "<leader>e", "<cmd>Neotree toggle<CR>",             desc = "Explorer", },
+    { "<leader>f", "<cmd>Format<CR>",                     desc = "Format your code", },
+    { "<leader>t", "<cmd>ToggleTerm direction=float<CR>", desc = "Open float term", },
+}
+
+-- set llm key maps
+local llm_keys = {
+    { "<leader>a",  group = "AI Tools" },
+    { "<leader>ac", mode = "n",        "<cmd>LLMSessionToggle<cr>",             desc = "Open ai session" },
+    { "<leader>ae", mode = "v",        "<cmd>LLMAppHandler CodeExplain<cr>",    desc = "AI code explain" },
+    { "<leader>at", mode = "x",        "<cmd>LLMAppHandler WordTranslate<cr>",  desc = "AI word translate" },
+    { "<leader>at", mode = "n",        "<cmd>LLMAppHandler Translate<cr>",      desc = "AI Translate" },
+    { "<leader>aa", mode = "n",        "<cmd>LLMAppHandler Ask<cr>",            desc = "AI ask and apply" },
+}
+
+if vim.env.LLM_KEY ~= "" and vim.env.LLM_KEY ~= nil then
+    table.insert(whick_key, llm_keys)
+end
+
+require("which-key").add(whick_key)

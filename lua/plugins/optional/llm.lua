@@ -1,5 +1,6 @@
 local AI_URL = vim.g.AI_URL
 local AI_MODEL = vim.g.AI_MODEL
+local AI_KEY = vim.env.LLM_KEY
 
 return {
     "Kurama622/llm.nvim",
@@ -13,7 +14,7 @@ return {
             model = AI_MODEL,
             api_type = "openai",
             fetch_key = function()
-                return vim.env.LLM_KEY
+                return AI_KEY
             end,
             max_tokens = 4096,
             temperature = 0.3,
@@ -101,14 +102,69 @@ NOTE:
                             },
                         },
                     },
+
+                },
+                Ask = {
+                    handler = tools.disposable_ask_handler,
+                    opts = {
+                        position = {
+                            row = 2,
+                            col = 0,
+                        },
+                        title = " Ask ",
+                        inline_assistant = true,
+                        language = "Chinese",
+
+                        -- [optinal] set your llm model
+                        url = AI_URL,
+                        model = AI_MODEL,
+                        api_type = "openai",
+                        fetch_key = function()
+                            return AI_KEY
+                        end,
+
+                        -- display diff
+                        display = {
+                            mapping = {
+                                mode = "n",
+                                keys = { "d" },
+                            },
+                            action = nil,
+                        },
+                        -- accept diff
+                        accept = {
+                            mapping = {
+                                mode = "n",
+                                keys = { "Y", "y" },
+                            },
+                            action = nil,
+                        },
+                        -- reject diff
+                        reject = {
+                            mapping = {
+                                mode = "n",
+                                keys = { "N", "n" },
+                            },
+                            action = nil,
+                        },
+                        -- close diff
+                        close = {
+                            mapping = {
+                                mode = "n",
+                                keys = { "<esc>" },
+                            },
+                            action = nil,
+                        },
+                    },
                 },
             },
         })
     end,
-    keys = {
-        { "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>" },
-        { "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>" },
-        { "<leader>at", mode = "x", "<cmd>LLMAppHandler WordTranslate<cr>" },
-        { "<leader>at", mode = "n", "<cmd>LLMAppHandler Translate<cr>" },
-    },
+    -- keys = {
+    --     { "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>" },
+    --     { "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>" },
+    --     { "<leader>at", mode = "x", "<cmd>LLMAppHandler WordTranslate<cr>" },
+    --     { "<leader>at", mode = "n", "<cmd>LLMAppHandler Translate<cr>" },
+    --     { "<leader>aa", mode = "n", "<cmd>LLMAppHandler Ask<cr>" },
+    -- },
 }
