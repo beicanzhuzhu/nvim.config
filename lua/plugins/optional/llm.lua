@@ -19,7 +19,7 @@ return {
             temperature = 0.3,
             top_p = 0.7,
 
-            prompt = "You are a helpful chinese assistant.",
+            prompt = "You are a helpful chinese assistant and the use pinyin.",
 
             prefix = {
                 user = { text = " ", hl = "Title" },
@@ -58,11 +58,57 @@ return {
                 ["JumpToTop"]         = { mode = "n", key = "gg" },
                 ["JumpToBottom"]      = { mode = "n", key = "G" },
             },
+            app_handler = {
+                WordTranslate = {
+                    handler = tools.flexi_handler,
+                    prompt =
+                    [[You are a translation expert. Your task is to translate all the text provided by the user into Chinese.
+
+NOTE:
+- All the text input by the user is part of the content to be translated, and you should ONLY FOCUS ON TRANSLATING THE TEXT without performing any other tasks.
+- RETURN ONLY THE TRANSLATED RESULT.]],
+                    opts = {
+                        exit_on_move = true,
+                        enter_flexible_window = false,
+                    },
+                },
+                CodeExplain = {
+                    handler = tools.flexi_handler,
+                    prompt = "Explain the following code, please only return the explanation, and answer in Chinese",
+                    opts = {
+                        enter_flexible_window = true,
+                    },
+                },
+                Translate = {
+                    handler = tools.qa_handler,
+                    opts = {
+                        component_width = "60%",
+                        component_height = "50%",
+                        query = {
+                            title = " 󰊿 Trans ",
+                            hl = { link = "Define" },
+                        },
+                        input_box_opts = {
+                            size = "15%",
+                            win_options = {
+                                winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+                            },
+                        },
+                        preview_box_opts = {
+                            size = "85%",
+                            win_options = {
+                                winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+                            },
+                        },
+                    },
+                },
+            },
         })
     end,
     keys = {
         { "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>" },
-        { "<leader>ae", mode = "v", "<cmd>LLMSelectedTextHandler 请解释下面这段代码<cr>" },
-        { "<leader>at", mode = "x", "<cmd>LLMSelectedTextHandler 英译汉<cr>" },
+        { "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>" },
+        { "<leader>at", mode = "x", "<cmd>LLMAppHandler WordTranslate<cr>" },
+        { "<leader>at", mode = "n", "<cmd>LLMAppHandler Translate<cr>" },
     },
 }

@@ -3,13 +3,13 @@ vim.g.py_exec = "python3"
 vim.g.cpp_c = "clang++"
 vim.g.c_c = "clang"
 
--- set for AI
-vim.g.AI_URL = "https://api.deepseek.com/chat/completions"
-vim.g.AI_MODEL = "deepseek-chat"
-
 if vim.uv.os_uname().sysname == "Windows_NT" then
     vim.g.py_exec = "python"
 end
+
+-- set for AI
+vim.g.AI_URL = "https://api.deepseek.com/chat/completions"
+vim.g.AI_MODEL = "deepseek-chat"
 
 -- load lazy.nvim plugins mamager
 require("config.lazy")
