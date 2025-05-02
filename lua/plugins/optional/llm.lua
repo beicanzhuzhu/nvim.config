@@ -19,7 +19,7 @@ return {
             temperature = 0.3,
             top_p = 0.7,
 
-            prompt = "You are a helpful chinese assistant and the use pinyin.",
+            prompt = "You are a helpful code assistant and the user may use pinyin,but you need to spesk chinese",
 
             prefix = {
                 user = { text = " ", hl = "Title" },
