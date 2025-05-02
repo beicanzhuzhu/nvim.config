@@ -1,3 +1,13 @@
+vim.api.nvim_create_user_command(
+    "Config",
+    function()
+        local config_file = vim.fn.stdpath("config") .. "/init.lua"
+        vim.cmd("edit " .. config_file)
+        vim.cmd("Neotree " .. vim.fn.stdpath("config"))
+        vim.notify("Open config file" .. config_file)
+    end,
+    { desc = "Open your neovim config" })
+
 return {
     "goolord/alpha-nvim",
     event = "VimEnter",
@@ -24,11 +34,9 @@ return {
         dashboard.section.header.val = vim.split(logo, "\n")
         -- stylua: ignore
         dashboard.section.buttons.val = {
-            dashboard.button("n", " " .. " New file", [[<cmd> ene <BAR> startinsert <cr>]]),
-            dashboard.button("b", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
-            dashboard.button("c", " " .. " Config",
-                "<cmd> edit " .. vim.fn.stdpath("config") .. "/init.lua | Neotree " .. vim.fn.stdpath("config") ..
-                " <cr>"),
+            dashboard.button("n", " " .. " New file", "<cmd> ene <BAR> startinsert <cr>"),
+            dashboard.button("b", " " .. " Restore Session", "<cmd> lua require(\"persistence\").load() <cr>"),
+            dashboard.button("c", " " .. " Config", "<cmd>Config<cr>"),
             dashboard.button("s", " " .. " Lazy Sync", "<cmd> Lazy sync <cr>"),
             dashboard.button("l", "󰒲 " .. " Lazy", "<cmd> Lazy <cr>"),
             dashboard.button("q", " " .. " Quit", "<cmd> qa <cr>"),
