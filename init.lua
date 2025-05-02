@@ -8,8 +8,9 @@ if vim.uv.os_uname().sysname == "Windows_NT" then
 end
 
 -- set for AI
-vim.g.AI_URL = "https://api.deepseek.com/chat/completions"
-vim.g.AI_MODEL = "deepseek-chat"
+-- Use openAI model
+vim.g.AI_URL = "https://chataiapi.com/v1/chat/completions"
+vim.g.AI_MODEL = "deepseek-v3"
 
 -- load lazy.nvim plugins mamager
 require("config.lazy")
