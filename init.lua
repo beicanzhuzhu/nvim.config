@@ -9,9 +9,8 @@ end
 
 -- set for AI
 -- Use openAI model
--- You need to set LLM_KEY
-vim.g.AI_URL = "https://chataiapi.com/v1/chat/completions"
-vim.g.AI_MODEL = "deepseek-v3"
+-- You need to set LLM_KEY and DEEPSEEK_KEY
+vim.g.AI_URL = "https://apic.littlewheat.com/v1/chat/completions"
 
 -- load lazy.nvim plugins mamager
 require("config.lazy")

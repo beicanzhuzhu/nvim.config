@@ -73,6 +73,14 @@ local llm_keys = {
     { "<leader>ae", mode = "x",        "<cmd>LLMAppHandler CodeExplain<cr>",   desc = "AI code explain" },
     { "<leader>at", mode = "x",        "<cmd>LLMAppHandler WordTranslate<cr>", desc = "AI word translate" },
     { "<leader>aa", mode = "x",        "<cmd>LLMAppHandler Ask<cr>",           desc = "AI ask and apply" },
+    {
+        "<leader>am",
+        mode = "n",
+        function()
+            require("llm.common.api").ModelsPreview()
+        end,
+        desc = "Change model"
+    }
 }
 
 if vim.env.LLM_KEY ~= "" and vim.env.LLM_KEY ~= nil then

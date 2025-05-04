@@ -1,5 +1,4 @@
 local AI_URL = vim.g.AI_URL
-local AI_MODEL = vim.g.AI_MODEL
 local AI_KEY = vim.env.LLM_KEY
 
 return {
@@ -9,16 +8,80 @@ return {
     config = function()
         local tools = require("llm.tools")
         require("llm").setup({
-            -- [[ Deepseek ]]
-            url = AI_URL,
-            model = AI_MODEL,
-            api_type = "openai",
-            fetch_key = function()
-                return AI_KEY
-            end,
-            max_tokens = 4096,
-            temperature = 0.3,
-            top_p = 0.7,
+            models = {
+                {
+                    name = "Deepseek-v3",
+                    url = AI_URL,
+                    model = "deepseek-v3",
+                    api_type = "openai",
+                    fetch_key = function()
+                        return AI_KEY
+                    end,
+                    max_tokens = 4096,
+                    temperature = 0.3,
+                    top_p = 0.7,
+                },
+                {
+                    name = "Deepseek-v3-offical",
+                    url = "https://api.deepseek.com/chat/completions",
+                    model = "deepseek-chat",
+                    api_type = "openai",
+                    fetch_key = function()
+                        return vim.env.DEEPSEEK_KEY
+                    end,
+                    max_tokens = 4096,
+                    temperature = 0.3,
+                    top_p = 0.7,
+                },
+                {
+                    name = "Deepseek-r1",
+                    url = AI_URL,
+                    model = "deepseek-r1",
+                    api_type = "openai",
+                    fetch_key = function()
+                        return AI_KEY
+                    end,
+                    max_tokens = 4096,
+                    temperature = 0.3,
+                    top_p = 0.7,
+                },
+                {
+                    name = "GPT-4.1-mini",
+                    url = AI_URL,
+                    model = "gpt-4.1-mini",
+                    api_type = "openai",
+                    fetch_key = function()
+                        return AI_KEY
+                    end,
+                    max_tokens = 4096,
+                    temperature = 0.3,
+                    top_p = 0.7,
+                },
+                {
+                    name = "GPT-4o-latest",
+                    url = AI_URL,
+                    model = "chatgpt-4o-latest",
+                    api_type = "openai",
+                    fetch_key = function()
+                        return AI_KEY
+                    end,
+                    max_tokens = 4096,
+                    temperature = 0.3,
+                    top_p = 0.7,
+                },
+                {
+                    name = "Grok-3",
+                    url = AI_URL,
+                    model = "grok-3",
+                    api_type = "openai",
+                    fetch_key = function()
+                        return AI_KEY
+                    end,
+                    max_tokens = 4096,
+                    temperature = 0.3,
+                    top_p = 0.7,
+                },
+            },
 
             prompt = "You are a helpful code assistant and the user may use pinyin,but you need to spesk chinese",
 
@@ -29,7 +92,7 @@ return {
 
             history_path = vim.fn.stdpath("data") .. "/llm-history",
             save_session = true,
-            max_history = 15,
+            max_history = 30,
             max_history_name_length = 20,
             -- stylua: ignore
             keys = {
@@ -49,7 +112,7 @@ return {
 
                 -- The keyboard mapping for the output and input windows in "float" style.
                 ["Session:Toggle"]    = { mode = "n", key = "<leader>ac" },
-                ["Session:Close"]     = { mode = "n", key = { "<esc>", "Q" } },
+                ["Session:Close"]     = { mode = "n", key = { "<esc>", "<C-q>" } },
 
                 -- Scroll
                 ["PageUp"]            = { mode = { "i", "n" }, key = "<C-b>" },
@@ -58,6 +121,11 @@ return {
                 ["HalfPageDown"]      = { mode = { "i", "n" }, key = "<C-d>" },
                 ["JumpToTop"]         = { mode = "n", key = "gg" },
                 ["JumpToBottom"]      = { mode = "n", key = "G" },
+
+                -- Switch from the output window to the input window.
+                ["Focus:Input"]       = { mode = "n", key = { "i", "<C-w>" } },
+                -- Switch from the input window to the output window.
+                ["Focus:Output"]      = { mode = { "n", "i" }, key = "<C-w>" },
             },
             app_handler = {
                 WordTranslate = {
