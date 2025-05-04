@@ -44,6 +44,8 @@ return {
                     max_tokens = 4096,
                     temperature = 0.3,
                     top_p = 0.7,
+                    enable_thinking = true,
+                    thinking_budget = 512,
                 },
                 {
                     name = "GPT-4.1-mini",
