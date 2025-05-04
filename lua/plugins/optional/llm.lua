@@ -27,7 +27,7 @@ return {
                 assistant = { text = "  ", hl = "Added" },
             },
 
-            -- history_path = "/tmp/llm-history",
+            history_path = vim.fn.stdpath("data") .. "/llm-history",
             save_session = true,
             max_history = 15,
             max_history_name_length = 20,
