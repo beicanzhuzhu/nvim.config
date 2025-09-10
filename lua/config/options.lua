@@ -24,19 +24,22 @@ opt.sidescrolloff = 8
 
 opt.iskeyword:append("-")
 
-opt.showmode = false
-opt.cursorline = true
+opt.showmode     = false
+opt.cursorline   = true
 
 -- vim.o.foldmethod = 'marker'
 -- vim.o.foldmarker = '<<<,>>>'
 vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.o.foldlevel = 99
+vim.o.foldexpr   = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldlevel  = 99
 
-opt.wrap = false
+-- set border
+vim.o.winborder  = 'rounded'
+
+opt.wrap         = false
 
 -- 设置撤销文件的保存路径
-local undodir = vim.fn.stdpath("data") .. "/undodir"
+local undodir    = vim.fn.stdpath("data") .. "/undodir"
 if vim.fn.isdirectory(undodir) == 0 then
     -- 如果不存在就创建这个文件夹
     vim.fn.mkdir(undodir, "p")

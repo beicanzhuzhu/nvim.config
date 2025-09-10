@@ -65,26 +65,4 @@ local whick_key = {
     { "<leader>t", "<cmd>ToggleTerm direction=float<CR>", desc = "Open float term", },
 }
 
--- set llm key maps
-local llm_keys = {
-    { "<leader>a",  group = "AI Tools" },
-    { "<leader>ac", mode = "n",        "<cmd>LLMSessionToggle<cr>",            desc = "Open ai session" },
-    { "<leader>at", mode = "n",        "<cmd>LLMAppHandler Translate<cr>",     desc = "AI Translate" },
-    { "<leader>ae", mode = "x",        "<cmd>LLMAppHandler CodeExplain<cr>",   desc = "AI code explain" },
-    { "<leader>at", mode = "x",        "<cmd>LLMAppHandler WordTranslate<cr>", desc = "AI word translate" },
-    { "<leader>aa", mode = "x",        "<cmd>LLMAppHandler Ask<cr>",           desc = "AI ask and apply" },
-    {
-        "<leader>am",
-        mode = "n",
-        function()
-            require("llm.common.api").ModelsPreview()
-        end,
-        desc = "Change model"
-    }
-}
-
-if vim.env.LLM_KEY ~= "" and vim.env.LLM_KEY ~= nil then
-    table.insert(whick_key, llm_keys)
-end
-
 require("which-key").add(whick_key)

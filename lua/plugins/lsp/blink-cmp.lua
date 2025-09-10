@@ -46,19 +46,32 @@ return {
         },
         completion = {
             list = { selection = { preselect = false, auto_insert = true } },
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 300,
+                window = { border = 'single' },
+            },
             menu = {
                 border = 'single',
                 draw = {
                     columns = {
-                        { "label",     "label_description", gap = 1 },
-                        { "kind_icon", "kind" }
+                        { "kind_icon" },
+                        { "label",    "label_description", gap = 1 },
+                    },
+                    components = {
+                        kind_icon = {
+                            text = function(ctx)
+                                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                                return kind_icon
+                            end,
+                            -- (optional) use highlights from mini.icons
+                            highlight = function(ctx)
+                                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                                return hl
+                            end,
+                        },
                     }
                 },
-            },
-            documentation = {
-                window = { border = 'single', },
-                auto_show = true,
-                auto_show_delay_ms = 500,
             },
             ghost_text = { enabled = true },
         },
