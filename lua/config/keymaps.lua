@@ -26,42 +26,46 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, si
 vim.keymap.set("n", "d", "\"_d", { noremap = true, silent = true })
 vim.keymap.set("v", "d", "\"_d", { noremap = true, silent = true })
 
-require("which-key").add({
+-- vim.keymap.set("n", "<S-s>", ":lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
-	{ "<leader>r", group = "Autorun" },
-	{ "<leader>rr", "<cmd>Autorun<CR>", desc = "Run your code" },
-	{ "<leader>rd", "<cmd>Autogdb<CR>", desc = "Use cgdb to debug your cpp code" },
-	{ "<leader>ra", "<cmd>Autoaddtest<CR>", desc = "Add running test" },
-	{ "<leader>rt", "<cmd>Autoruntest<CR>", desc = "Run your code using test" },
-	{ "<leader>rx", "<cmd>Autodeltest<CR>", desc = "Del all json test" },
+vim.keymap.set("n", "d", "\"_d", { noremap = true, silent = true })
+vim.keymap.set("v", "d", "\"_d", { noremap = true, silent = true })
 
-	{ "<leader>m", group = "Cmake-tools" },
-	{ "<leader>mg", "<cmd>CMakeGenerate<CR>", desc = "CMake generate" },
-	{ "<leader>mr", "<cmd>CMakeRun<CR>", desc = "CMake run" },
-	{ "<leader>mb", "<cmd>CMakeBuild<CR>", desc = "CMake build" },
+-- which-key key maps
+local whick_key = {
 
-	{
-		"<leader>s",
-		function()
-			require("persistence").select()
-		end,
-		desc = "Select session",
-	},
-	{
-		"<leader>e",
-		"<cmd>Neotree toggle<CR>",
-		desc = "Explorer",
-	},
-	{
-		"<leader>f",
-		"<cmd>Format<CR>",
-		desc = "Format your code",
-	},
-	{
-		"<leader>t",
-		"<cmd>:ToggleTerm direction=float<CR>",
-		desc = "Open float term",
-	},
-	{ mode = { "v" }, { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Comment line" } },
-	{ mode = { "n" }, { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Comment line" } },
-})
+    { "<leader>r",  group = "Autorun" },
+    { "<leader>rr", "<cmd>Autorun<CR>",                    desc = "Run your code" },
+    { "<leader>rd", "<cmd>Autogdb<CR>",                    desc = "Use cgdb to debug your cpp code" },
+    { "<leader>ra", "<cmd>Autoaddtest<CR>",                desc = "Add running test" },
+    { "<leader>rt", "<cmd>Autoruntest<CR>",                desc = "Run your code using test" },
+    { "<leader>rx", "<cmd>Autodeltest<CR>",                desc = "Del all json test" },
+
+    { "<leader>m",  group = "Cmake-tools" },
+    { "<leader>mg", "<cmd>CMakeGenerate<CR>",              desc = "CMake generate" },
+    { "<leader>mr", "<cmd>CMakeQuickRun<CR>",              desc = "CMake run" },
+    { "<leader>mb", "<cmd>CMakeBuild<CR>",                 desc = "CMake build" },
+    { "<leader>ms", "<cmd>CMakeQuickStart<CR>",            desc = "CMake quick start" },
+
+    { "<leader>x",  "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+
+    {
+        "<leader>w",
+        function()
+            vim.lsp.buf.code_action()
+        end,
+        desc = "Fix your code"
+    },
+    {
+        "<leader>s",
+        function()
+            require("persistence").select()
+        end,
+        desc = "Select session",
+    },
+    { "<leader>e", "<cmd>Neotree toggle<CR>",             desc = "Explorer", },
+    { "<leader>f", "<cmd>Format<CR>",                     desc = "Format your code", },
+    { "<leader>t", "<cmd>ToggleTerm direction=float<CR>", desc = "Open float term", },
+}
+
+require("which-key").add(whick_key)

@@ -1,14 +1,15 @@
 return {
-  'ShangYJQ/autorun.nvim',
-  event = "VeryLazy",
-  dependencies = {
-    {
-      'akinsho/toggleterm.nvim',
+    'ShangYJQ/autorun.nvim',
+    enabled = true,
+    event = "VeryLazy",
+    dependencies = {
+        {
+            'akinsho/toggleterm.nvim',
+        },
     },
-  },
-  opts = {
-    py_exec = "python3",
-    cpp_c = "clang++",
-    c_c = "clang",
-  }
+    opts = {
+        py_exec = vim.g.py_exec,
+        cpp_c = vim.g.cpp_c,
+        c_c = vim.g.c_c,
+    }
 }
