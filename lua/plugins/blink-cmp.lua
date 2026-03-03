@@ -17,7 +17,7 @@ require("blink.cmp").setup({
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 	completion = {
 		documentation = {
-			auto_show = true,
+			auto_show = false,
 			auto_show_delay_ms = 500,
 		},
 		ghost_text = { enabled = true },

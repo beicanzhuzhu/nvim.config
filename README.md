@@ -17,7 +17,7 @@
 git clone https://github.com/ShangYJQ/nvim.config.git ~/.config/nvim
 git clone git@github.com:ShangYJQ/nvim.config.git # If use ssh
 
-# 编译安装最新 neovim (NVIM v0.12.0-dev-1eb2ca9fcf for now)
+# 编译安装最新 neovim (NVIM v0.12.0-dev-a8361c3afc for now)
 git clone --depth 1 https://github.com/neovim/neovim
 make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local/share/neovim" CMAKE_BUILD_TYPE=Release
 make install
