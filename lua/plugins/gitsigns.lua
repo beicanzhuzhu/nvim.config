@@ -19,12 +19,6 @@ require("gitsigns").setup({
 		changedelete = { text = "~" },
 		untracked = { text = "┆" },
 	},
-
-	current_line_blame = true,
-	current_line_blame_opts = {
-		delay = 500,
-		virt_text_pos = "eol",
-	},
 })
 
 local map = vim.keymap.set

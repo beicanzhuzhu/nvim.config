@@ -1,21 +1,5 @@
 -- Lualine
 
-local mode_map = {
-	["NORMAL"] = "󰊠 普通",
-	["INSERT"] = "󰏫 插入",
-	["VISUAL"] = "󰈈 可视",
-	["V-LINE"] = "󰈈 行视",
-	["V-BLOCK"] = "󰈈 块视",
-	["SELECT"] = "󰒅 选择",
-	["S-LINE"] = "󰒅 行选",
-	["S-BLOCK"] = "󰒅 块选",
-	["REPLACE"] = "󰛔 替换",
-	["V-REPLACE"] = "󰛔 虚替",
-	["COMMAND"] = "󰘳 命令",
-	["EX"] = "󰘳 执行",
-	["TERMINAL"] = "󰞷 终端",
-	["NONE"] = "󰀦 无",
-}
 
 require("lualine").setup({
 	options = {
@@ -23,7 +7,6 @@ require("lualine").setup({
 		theme = "auto",
 		-- component_separators = { left = "", right = "" },
 		component_separators = " ",
-		section_separators = { left = "", right = "" },
 		-- section_separators = { left = "", right = "" },
 		disabled_filetypes = {
 			statusline = {},
@@ -43,10 +26,6 @@ require("lualine").setup({
 		lualine_a = {
 			{
 				"mode",
-				fmt = function(str)
-					return mode_map[str] or str
-				end,
-				separator = { left = "", right = "" },
 				padding = { left = 1, right = 2 },
 			},
 		},
@@ -90,7 +69,6 @@ require("lualine").setup({
 				function()
 					return " " .. os.date("%R")
 				end,
-				separator = { left = "", right = "" },
 			},
 		},
 	},
