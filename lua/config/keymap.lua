@@ -6,6 +6,11 @@ local map = vim.keymap.set
 map("i", "<C-q>", "<Esc>", { desc = "Exit insert mode" })
 map("n", "<C-q>", "<cmd>q<CR>", { desc = "Quit" })
 map("n", "<C-Q>", "<cmd>q!<CR>", { desc = "Forced quit" })
+
+-- 更好的搜索跳转
+map("n", "n", "nzzzv", { desc = "Next search result centered" })
+map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
+
 -- map("n", "<C-z>", "<cmd>undo<CR>", { desc = "Undo" })
 map({ "n", "v" }, "d", '"_d', { desc = "Delete to black hole register" })
 map("n", "<leader>c", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
@@ -29,7 +34,7 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase width" })
 
 -- Tab navigation
-map("n", "<S-n>", ":tabnew ", { desc = "New tab" })
+-- map("n", "<S-n>", ":tabnew ", { desc = "New tab" })
 
 -- Terminal
 -- map("n", "<leader>t", function()
@@ -46,9 +51,23 @@ map("n", "gl", "$", { desc = "Move to right" })
 map("n", "<A-k>", ":move .-2<CR>==", { noremap = true, silent = true })
 map("n", "<A-j>", ":move .+1<CR>==", { noremap = true, silent = true })
 
+map("n", "<A-Up>", ":move .-2<CR>==", { noremap = true, silent = true })
+map("n", "<A-Down>", ":move .+1<CR>==", { noremap = true, silent = true })
+
 -- change x to helix mode
 map("n", "x", "V", { noremap = true, silent = true })
 map("v", "x", "<Esc>", { noremap = true, silent = true })
+
+-- Half-page scrolling for Shift/Page keys
+map("n", "<S-Up>", "<C-u>", { desc = "Half page up" })
+map("n", "<S-Down>", "<C-d>", { desc = "Half page down" })
+
+-- Yank whole file without moving cursor
+map("n", "<leader>u", function()
+	local view = vim.fn.winsaveview()
+	vim.cmd("silent keepjumps %y")
+	vim.fn.winrestview(view)
+end, { desc = "Yank whole file without moving cursor" })
 
 -- Toggle cmdheight
 map("n", "<leader>z", function()
@@ -76,6 +95,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local buf = event.buf
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		local telescope_builtin = require("telescope.builtin")
 
 		-- add omnifunc to cmp with lsp
 		vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -88,11 +108,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- Navigation
-		map("n", "gd", vim.lsp.buf.definition, { buffer = buf, desc = "LSP: Go to definition" })
 		map("n", "gD", vim.lsp.buf.declaration, { buffer = buf, desc = "LSP: Go to declaration" })
-		map("n", "gi", vim.lsp.buf.implementation, { buffer = buf, desc = "LSP: Go to implementation" })
-		map("n", "gr", vim.lsp.buf.references, { buffer = buf, desc = "LSP: Find references" })
-		map("n", "gy", vim.lsp.buf.type_definition, { buffer = buf, desc = "LSP: Go to type definition" })
+		map("n", "gd", telescope_builtin.lsp_definitions, { buffer = buf, desc = "LSP: Go to definition" })
+		map("n", "gi", telescope_builtin.lsp_implementations, { buffer = buf, desc = "LSP: Go to implementation" })
+		map("n", "gr", telescope_builtin.lsp_references, { buffer = buf, desc = "LSP: Find references" })
+		map("n", "gy", telescope_builtin.lsp_type_definitions, { buffer = buf, desc = "LSP: Go to type definition" })
 
 		-- Documentation and help
 		map("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "LSP: Hover documentation" })

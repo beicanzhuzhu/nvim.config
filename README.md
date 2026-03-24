@@ -17,7 +17,7 @@
 git clone https://github.com/ShangYJQ/nvim.config.git ~/.config/nvim
 git clone git@github.com:ShangYJQ/nvim.config.git # If use ssh
 
-# 编译安装最新 neovim (NVIM v0.12.0-dev-a8361c3afc for now)
+# 编译安装最新 neovim (NVIM v0.12.0-dev-83037cf218 for now)
 git clone --depth 1 https://github.com/neovim/neovim
 make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local/share/neovim" CMAKE_BUILD_TYPE=Release
 make install
@@ -63,6 +63,13 @@ sudo pacman -S python-ruff
 sudo pacman -S bash-language-server shfmt
 ```
 
+#### Fish
+
+```bash
+sudo pacman -S fish-lsp
+sudo pacman -S shfmt
+```
+
 #### JSON
 
 ```bash
@@ -83,6 +90,12 @@ export PATH="$HOME/go/bin:$PATH"
 sudo pacman -S zls zig
 ```
 
+#### ASM
+
+```bash
+sudo pacman -S asm-lsp
+```
+
 #### TOML
 
 ```bash
@@ -93,12 +106,19 @@ sudo pacman -S taplo-cli
 
 ```bash
 sudo pacman -S cmake-format
+paru -S neocmakelsp-bin
 ```
 
 #### Markdown/YAML/HTML/CSS
 
 ```bash
 bun i -g prettier
+```
+
+#### XML
+
+```bash
+sudo pacman -S libxml2
 ```
 
 #### Vue
@@ -117,6 +137,15 @@ bun i -g vscode-langservers-extracted
 bun i -g dockerfile-language-server-nodejs
 ```
 
+#### sqls
+
+```bash
+# lsp
+go install github.com/sqls-server/sqls@latest
+# formatter
+sudo pacman -S pgformatter
+```
+
 ## 结构
 
 ```text
@@ -133,11 +162,18 @@ bun i -g dockerfile-language-server-nodejs
 │   │   ├── lsp.lua
 │   │   ├── neovide.lua
 │   │   └── options.lua
+│   ├── overseer
+│   │   └── template
+│   │       └── user
+│   │           ├── cpp_quick_run.lua
+│   │           ├── c_quick_run.lua
+│   │           └── py_quick_run.lua
 │   ├── plugins
 │   │   ├── blink-cmp.lua
 │   │   ├── blink-indent.lua
 │   │   ├── blink-pairs.lua
 │   │   ├── conform.lua
+│   │   ├── flash.lua
 │   │   ├── gitsigns.lua
 │   │   ├── init.lua
 │   │   ├── lualine.lua
@@ -151,6 +187,7 @@ bun i -g dockerfile-language-server-nodejs
 │   │   ├── nvim-ts-autotag.lua
 │   │   ├── nvim-ufo.lua
 │   │   ├── oil.lua
+│   │   ├── overseer.lua
 │   │   ├── render-markdown.lua
 │   │   ├── telescope.lua
 │   │   ├── themes.lua

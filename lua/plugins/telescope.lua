@@ -3,6 +3,11 @@ require("telescope").setup({
 	defaults = {
 		layout_strategy = "horizontal",
 		sorting_strategy = "ascending",
+		file_ignore_patterns = {
+			"node_modules/",
+			"%.git/",
+			"build.*/",
+		},
 		layout_config = {
 			prompt_position = "top",
 			width = 0.9,
@@ -20,14 +25,17 @@ require("telescope").setup({
 		},
 	},
 })
+
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("project")
 
 local map = vim.keymap.set
 
 -- Telescope
 local builtin = require("telescope.builtin")
 map("n", "<leader>f", builtin.find_files, { desc = "Telescope find files" })
-map("n", "<leader>/", builtin.live_grep, { desc = "Telescope live grep" })
+map("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "Telescope current buffer fuzzy find" })
+map("n", "<leader>?", builtin.live_grep, { desc = "Telescope live grep" })
 map("n", "<leader>b", builtin.buffers, { desc = "Telescope buffers" })
 map("n", "<leader>th", builtin.help_tags, { desc = "Telescope help tags" })
 map("n", "<leader>d", builtin.diagnostics, { desc = "Telescope diagnostics" })
@@ -36,7 +44,13 @@ map("n", "<leader>S", builtin.lsp_workspace_symbols, { desc = "Telescope lsp_wor
 map("n", "<leader>gh", builtin.git_status, { desc = "Telescope git status" })
 
 -- TodoTelescope
-map("n", "<leader>p", "<cmd>TodoTelescope<CR>", { desc = "Telescope find tode" })
+-- What to do?
+map("n", "<leader>w", "<cmd>TodoTelescope<CR>", { desc = "Telescope find tode" })
+
+-- Projects telescope
+map("n", "<leader>p", function()
+	require("telescope").extensions.project.project({})
+end, { desc = "Telescope projects" })
 
 -- theme switcher
 map("n", "<leader>T", function()
