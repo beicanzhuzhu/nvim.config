@@ -10,6 +10,10 @@ require("cph").setup({
 	run = {
 		time_limit = 1991,
 	},
+	window = {
+		dir = "left",
+		width = 40,
+	}
 })
 
 -- Toggle cph
