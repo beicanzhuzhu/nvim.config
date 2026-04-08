@@ -11,8 +11,8 @@ require("cph").setup({
 		time_limit = 1991,
 	},
 	window = {
-		dir = "left",
 		width = 40,
+		dir = "floating"
 	}
 })
 
