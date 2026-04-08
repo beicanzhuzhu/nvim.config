@@ -78,6 +78,8 @@ map("n", "<leader>z", function()
 	end
 end, { silent = true, desc = "Toggle cmdheight" })
 
+
+
 -- auto close pairs
 -- map("i", "'", "''<left>")
 -- map("i", "`", "``<left>")

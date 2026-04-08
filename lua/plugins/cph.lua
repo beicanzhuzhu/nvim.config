@@ -1,0 +1,16 @@
+require("cph").setup({
+	compile = {
+		cpp = {
+			compiler = "g++",
+		},
+		c = {
+			compiler = "clang",
+		},
+	},
+	run = {
+		time_limit = 1991,
+	},
+})
+
+-- Toggle cph
+vim.keymap.set("n", "<leader>x", "<cmd>ToggleCPH<CR>")

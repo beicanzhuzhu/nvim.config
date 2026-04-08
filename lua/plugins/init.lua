@@ -2,10 +2,10 @@
 --  在大多数情况下会自动编译 编译失败请手动编译
 vim.pack.add({
 
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",          version = "main" },
 
 	-- Themes
-	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+	{ src = "https://github.com/catppuccin/nvim",                          name = "catppuccin" },
 	{ src = "https://github.com/navarasu/onedark.nvim" },
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/folke/tokyonight.nvim" },
@@ -66,6 +66,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope-project.nvim" },
 
 	{ src = "https://github.com/stevearc/overseer.nvim" },
+
+	{ src = "https://github.com/beicanzhuzhu/cph.nvim" },
 })
 
 -- 获得自动构建器
@@ -100,3 +102,5 @@ require("plugins.flash")
 require("plugins.multicursor-nvim")
 -- require("plugins.mini-indentscope")
 require("plugins.overseer")
+
+require("plugins.cph")
