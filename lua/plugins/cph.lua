@@ -12,7 +12,7 @@ require("cph").setup({
 	},
 	window = {
 		width = 40,
-		dir = "floating"
+		dir = "left",
 	}
 })
 
