@@ -1,13 +1,6 @@
 local M = {}
 
 local build_configs = {
-	["blink.cmp"] = {
-		cmd = "cargo build --release",
-		check_files = {
-			"target/release/libblink_cmp_fuzzy.so",
-			"target/release/libblink_cmp_fuzzy.dylib",
-		},
-	},
 	["blink.pairs"] = {
 		cmd = "cargo build --release",
 		check_files = {
