@@ -3,6 +3,7 @@ local lsp_servers = {
 	"rust_analyzer",
 	"clangd",
 	"basedpyright",
+	"ruff",
 	"bashls",
 	"jsonls",
 	"gopls",
