@@ -81,7 +81,7 @@ cmp.setup({
 
 	sources = {
 
-		default = { "lsp", "snippets", "path", "dictionary", "buffer" },
+		default = { "lsp", "snippets", "path", "buffer" },
 
 		providers = {
 
@@ -95,27 +95,6 @@ cmp.setup({
 				score_offset = 20,
 				min_keyword_length = 2,
 				max_items = 4,
-			},
-
-			dictionary = {
-
-				score_offset = 10,
-
-				module = "blink-cmp-dictionary",
-				name = "Dict",
-				-- 💡 Performance impact of min_keyword_length:
-				-- - In fallback mode: No impact on performance regardless of value
-				-- - With fzf: Higher values may improve performance
-				-- - With other commands (rg/grep): Higher values significantly improve performance
-				min_keyword_length = 2,
-				max_items = 6,
-				-- options for blink-cmp-dictionary
-				opts = {
-					-- put your dictionary files here
-					dictionary_directories = {
-						vim.fn.stdpath("config") .. "/dictionary",
-					},
-				},
 			},
 		},
 	},
