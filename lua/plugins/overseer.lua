@@ -14,7 +14,7 @@ overseer.setup({
 	-- padding for float win
 	task_win = {
 		padding = 6,
-		border = "rounded",
+		border = "single",
 	},
 
 	-- Configure the task list
