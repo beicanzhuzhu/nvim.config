@@ -43,6 +43,20 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase width" }
 -- end, { desc = "Open terminal" })
 map("t", "<C-q>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
+map("n", "<leader>t", function()
+	require("nvchad.term").toggle({
+		pos = "float",
+		id = "floatTerm",
+	})
+end, { desc = "NvChad floating terminal" })
+
+map("t", "<leader>t", function()
+	require("nvchad.term").toggle({
+		pos = "float",
+		id = "floatTerm",
+	})
+end, { desc = "Toggle NvChad floating terminal" })
+
 map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "bn" })
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "bp" })
 
@@ -73,6 +87,10 @@ map("v", "x", "<Esc>", { noremap = true, silent = true, desc = "Helix-style x to
 -- Half-page scrolling for Shift/Page keys
 -- map("n", "<S-Up>", "<C-u>", { desc = "Half page up" })
 -- map("n", "<S-Down>", "<C-d>", { desc = "Half page down" })
+
+-- map("n", "<leader>T", function()
+-- 	require("nvchad.themes").open()
+-- end, { desc = "Toggle themes" })
 
 -- Yank whole file without moving cursor
 map("n", "<leader>u", function()

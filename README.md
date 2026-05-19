@@ -251,11 +251,11 @@ bun i -g gh-actions-language-server
 | ---- | ----------- | ------------------- |
 | n    | `<leader>e` | 切换文件树 (懒加载) |
 
-### 终端 (Sloat)
+### 终端 (NvChad Term)
 
 | 模式 | 按键        | 功能              |
 | ---- | ----------- | ----------------- |
-| n    | `<leader>t` | 浮动终端 (懒加载) |
+| n,t  | `<leader>t` | 切换浮动终端      |
 
 ### Overseer (任务运行)
 
@@ -307,11 +307,13 @@ bun i -g gh-actions-language-server
 │   └── lsp
 │       ├── lua_ls.lua
 │       ├── make_ls.lua
-│       └── matlab_ls.lua
+│       ├── matlab_ls.lua
+│       └── nixd.lua
 ├── ftplugin
 │   └── haskell.lua
 ├── init.lua
 ├── lua
+│   ├── chadrc.lua
 │   ├── config
 │   │   ├── autocmd.lua
 │   │   ├── globals.lua
@@ -349,6 +351,7 @@ bun i -g gh-actions-language-server
 │   │   ├── mini-surround.lua
 │   │   ├── multicursor-nvim.lua
 │   │   ├── neo-tree.lua
+│   │   ├── nvchad.lua
 │   │   ├── nvim-treesitter.lua
 │   │   ├── nvim-ts-autotag.lua
 │   │   ├── nvim-ufo.lua
@@ -357,11 +360,9 @@ bun i -g gh-actions-language-server
 │   │   ├── render-markdown.lua
 │   │   ├── sloat.lua
 │   │   ├── telescope.lua
-│   │   ├── themes.lua
 │   │   ├── tiny-cmdline.lua
 │   │   ├── tiny-inline-diagnostics.lua
-│   │   ├── todo-comments.lua
-│   │   └── toggleterm.lua
+│   │   └── todo-comments.lua
 │   └── utlis
 │       ├── builder.lua
 │       └── lazy.lua

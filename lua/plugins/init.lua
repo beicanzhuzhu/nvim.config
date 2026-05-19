@@ -9,16 +9,14 @@ vim.pack.add({
 
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 
-	-- Themes
-	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
-	{ src = "https://github.com/navarasu/onedark.nvim" },
-	{ src = "https://github.com/rebelot/kanagawa.nvim" },
-	{ src = "https://github.com/folke/tokyonight.nvim" },
-	{ src = "https://github.com/marko-cerovac/material.nvim" },
-
 	-- UI
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
+	-- { src = "https://github.com/nvim-lualine/lualine.nvim" },
+
+	{ src = "https://github.com/nvchad/base46" },
+	{ src = "https://github.com/nvzone/volt" },
+	{ src = "https://github.com/nvchad/ui" },
+
 	-- { src = "https://github.com/nvim-mini/mini.indentscope" },
 	{ src = "https://github.com/saghen/blink.indent" },
 	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
@@ -99,12 +97,12 @@ vim.pack.add({
 	-- { src = "https://github.com/beicanzhuzhu/cph.nvim" },
 })
 
-require("plugins.themes")
 require("plugins.nvim-treesitter")
 require("plugins.blink-cmp")
 require("plugins.blink-pairs")
 require("plugins.conform")
-require("plugins.lualine")
+-- require("plugins.lualine")
+require("plugins.nvchad")
 require("plugins.gitsigns")
 require("plugins.mini-surround")
 require("plugins.telescope")
@@ -141,13 +139,13 @@ lazy.keymap_stub({ "n", "x" }, "<leader>m", load_multicursor, { desc = "Multicur
 
 ---------------------------------------- sloat ----------------------------------------
 
-local function load_sloat()
-	vim.pack.add({ { src = "https://github.com/ShangYJQ/sloat.git" } })
-	require("plugins.sloat")
-end
-
-lazy.keymap_stub("n", "<leader>t", load_sloat, { noremap = true, silent = true, desc = "Toggle sloat term" })
-lazy.command_stub("Sloat", load_sloat)
+-- local function load_sloat()
+-- 	vim.pack.add({ { src = "https://github.com/ShangYJQ/sloat.git" } })
+-- 	require("plugins.sloat")
+-- end
+--
+-- lazy.keymap_stub("n", "<leader>t", load_sloat, { noremap = true, silent = true, desc = "Toggle sloat term" })
+-- lazy.command_stub("Sloat", load_sloat)
 
 ---------------------------------------- neo-tree ----------------------------------------
 

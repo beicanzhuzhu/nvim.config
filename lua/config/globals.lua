@@ -1,3 +1,6 @@
+-- nvchad base46_cache dir
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
+
 -- 主键
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

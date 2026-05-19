@@ -1,5 +1,5 @@
-vim.api.nvim_set_hl(0, "TinyCmdlineNormal", { link = "NormalFloat" })
-vim.api.nvim_set_hl(0, "TinyCmdlineBorder", { link = "FloatBorder" })
+-- vim.api.nvim_set_hl(0, "TinyCmdlineNormal", { link = "NormalFloat" })
+-- vim.api.nvim_set_hl(0, "TinyCmdlineBorder", { link = "FloatBorder" })
 
 require("tiny-cmdline").setup({
 	-- Cmdline window width

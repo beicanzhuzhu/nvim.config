@@ -1,10 +1,10 @@
-vim.api.nvim_set_hl(0, "BlinkPairsOrange", { fg = "#f78c6c" })
-vim.api.nvim_set_hl(0, "BlinkPairsPurple", { fg = "#c792ea" })
-vim.api.nvim_set_hl(0, "BlinkPairsBlue", { fg = "#82aaff" })
-
-vim.api.nvim_set_hl(0, "BlinkPairsUnmatched", { fg = "#ff5370" })
-
-vim.api.nvim_set_hl(0, "BlinkPairsMatchParen", { link = "PmenuSel" })
+-- vim.api.nvim_set_hl(0, "BlinkPairsOrange", { fg = "#f78c6c" })
+-- vim.api.nvim_set_hl(0, "BlinkPairsPurple", { fg = "#c792ea" })
+-- vim.api.nvim_set_hl(0, "BlinkPairsBlue", { fg = "#82aaff" })
+--
+-- vim.api.nvim_set_hl(0, "BlinkPairsUnmatched", { fg = "#ff5370" })
+--
+-- vim.api.nvim_set_hl(0, "BlinkPairsMatchParen", { link = "PmenuSel" })
 
 require("blink.pairs").setup({
 
