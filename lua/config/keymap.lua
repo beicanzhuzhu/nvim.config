@@ -152,7 +152,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Code actions
 		map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: Code action" })
-		map("n", "<leader>r", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: Rename symbol" })
+		map("n", "<leader>r", require("nvchad.lsp.renamer"), {
+			buffer = buf,
+			desc = "LSP: Rename symbol",
+		})
 
 		-- Diagnostics
 		-- map("n", "<leader>e", vim.diagnostic.open_float, { buffer = buf, desc = "LSP: Show diagnostics" })

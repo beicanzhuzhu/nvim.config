@@ -26,6 +26,7 @@ M.base46 = {
 		"telescope",
 		"tiny-inline-diagnostic",
 		"todo",
+		"lsp",
 	},
 
 	hl_add = {
@@ -53,6 +54,7 @@ M.ui = {
 		enabled = false,
 		lazyload = false,
 	},
+
 	telescope = { style = "borderless" },
 
 	statusline = {
@@ -90,8 +92,9 @@ M.nvdash = {
 
 		{ txt = "", hl = "NvDashFooter", no_gap = true, rep = true },
 
-		{ txt = "  Find Files", keys = "ff", cmd = "Telescope find_files" },
+		{ txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
 		{ txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
+		{ txt = "  Git Status", keys = "gh", cmd = "Telescope git_status" },
 		{ txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
 		{ txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },
 
