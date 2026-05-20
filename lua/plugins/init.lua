@@ -57,7 +57,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.surround" },
 
 	-- sql support
-	-- { src = "https://github.com/joryeugene/dadbod-grip.nvim" },
+	{ src = "https://github.com/joryeugene/dadbod-grip.nvim" },
 
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 
@@ -109,7 +109,7 @@ require("plugins.conform")
 require("plugins.nvchad")
 require("plugins.gitsigns")
 require("plugins.mini-surround")
--- require("plugins.dadbod-grip") -- lazy loaded
+require("plugins.dadbod-grip")
 require("plugins.telescope")
 require("plugins.render-markdown")
 require("plugins.tiny-inline-diagnostics")
@@ -191,38 +191,6 @@ lazy.command_stub("OverseerToggle", load_overseer)
 lazy.command_stub("OverseerRun", load_overseer)
 lazy.command_stub("OverseerShell", load_overseer)
 lazy.command_stub("OverseerTaskAction", load_overseer)
-
----------------------------------------- dadbod-grip ----------------------------------------
-
-local function load_dadbod_grip()
-	vim.pack.add({ { src = "https://github.com/joryeugene/dadbod-grip.nvim" } })
-	require("plugins.dadbod-grip")
-end
-
-lazy.command_stub("Grip", load_dadbod_grip)
-lazy.command_stub("GripExplain", load_dadbod_grip)
-lazy.command_stub("GripSchema", load_dadbod_grip)
-lazy.command_stub("GripTables", load_dadbod_grip)
-lazy.command_stub("GripQuery", load_dadbod_grip)
-lazy.command_stub("GripSave", load_dadbod_grip)
-lazy.command_stub("GripLoad", load_dadbod_grip)
-lazy.command_stub("GripHistory", load_dadbod_grip)
-lazy.command_stub("GripProfile", load_dadbod_grip)
-lazy.command_stub("GripAsk", load_dadbod_grip)
-lazy.command_stub("GripDiff", load_dadbod_grip)
-lazy.command_stub("GripCreate", load_dadbod_grip)
-lazy.command_stub("GripDrop", load_dadbod_grip)
-lazy.command_stub("GripRename", load_dadbod_grip)
-lazy.command_stub("GripProperties", load_dadbod_grip)
-lazy.command_stub("GripConnect", load_dadbod_grip)
-lazy.command_stub("GripAttach", load_dadbod_grip)
-lazy.command_stub("GripDetach", load_dadbod_grip)
-lazy.command_stub("GripOpen", load_dadbod_grip)
-lazy.command_stub("GripStart", load_dadbod_grip)
-lazy.command_stub("GripHome", load_dadbod_grip)
-lazy.command_stub("GripToggle", load_dadbod_grip)
-lazy.command_stub("GripExport", load_dadbod_grip)
-lazy.command_stub("GripFill", load_dadbod_grip)
 
 ---------------------------------------- dap ----------------------------------------
 

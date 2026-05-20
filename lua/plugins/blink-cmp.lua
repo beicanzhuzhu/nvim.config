@@ -17,7 +17,7 @@ cmp.setup({
 		end
 
 		-- 所有 nofile 都不开启
-		if bt ~= "" then
+		if bt ~= "" and ft ~= "sql" then
 			return false
 		end
 
@@ -81,7 +81,7 @@ cmp.setup({
 
 	sources = {
 
-		default = { "lsp", "snippets", "path", "buffer" },
+		default = { "lsp", "dadbod_grip", "snippets", "path", "buffer" },
 
 		providers = {
 
@@ -95,6 +95,12 @@ cmp.setup({
 				score_offset = 20,
 				min_keyword_length = 2,
 				max_items = 4,
+			},
+
+			dadbod_grip = {
+				score_offset = 80,
+				name = "Grip SQL",
+				module = "dadbod-grip.completion.blink",
 			},
 		},
 	},
