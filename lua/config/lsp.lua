@@ -13,6 +13,7 @@ local lsp_servers = {
 	"eslint",
 	"vtsls",
 	"neocmake",
+	"asm_lsp",
 	-- "sqls",
 	"fish_lsp",
 	"asm_lsp",
@@ -49,6 +50,11 @@ vim.lsp.config("vtsls", {
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
 
+vim.lsp.config("asm_lsp", {
+	cmd = { "asm-lsp" },
+	filetypes = { "asm", "nasm" },
+}
+)
 -- sqls 的配置
 -- 在打开目录下创建 config.yml
 -- connections:

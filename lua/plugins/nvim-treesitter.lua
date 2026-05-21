@@ -6,6 +6,7 @@ ts.setup({
 
 -- 安装解析器
 ts.install({
+	"asm",
 	"html",
 	"css",
 	"vim",

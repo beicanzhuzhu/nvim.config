@@ -8,7 +8,7 @@ require("cph").setup({
 		},
 	},
 	run = {
-		time_limit = 1991,
+		time_limit = 5991,
 	},
 	window = {
 		width = 40,

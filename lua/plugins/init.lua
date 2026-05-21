@@ -57,6 +57,7 @@ vim.pack.add({
 	-- rustup override set nightly
 	-- cargo build --release
 	{ src = "https://github.com/saghen/blink.pairs" },
+	{ src = "https://github.com/saghen/blink.lib" }, -- require for new version of blink-cmp
 
 	{ src = "https://github.com/jake-stewart/multicursor.nvim" },
 
@@ -82,7 +83,7 @@ require("plugins.themes")
 require("plugins.nvim-treesitter")
 require("plugins.blink-cmp")
 require("plugins.blink-pairs")
-require("plugins.conform")
+--require("plugins.conform")
 require("plugins.lualine")
 require("plugins.gitsigns")
 require("plugins.mini-surround")

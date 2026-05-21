@@ -98,3 +98,9 @@ opt.foldcolumn = "1"
 opt.foldlevelstart = 99
 opt.foldenable = true
 vim.o.fillchars = "eob: ,fold: ,foldopen: ,foldsep: ,foldinner: ,foldclose: "
+
+vim.filetype.add({
+	extension = {
+		asm = 'nasm',
+	}
+})
