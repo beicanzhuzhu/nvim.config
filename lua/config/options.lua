@@ -31,7 +31,7 @@ opt.wrap = false
 opt.list = true
 opt.listchars = {
 	space = "·",
-	tab = "→ ",
+	tab = "· ",
 }
 
 -- Indentation
@@ -41,7 +41,7 @@ opt.softtabstop = tablen
 opt.shiftwidth = tablen
 opt.expandtab = false
 opt.autoindent = true
-vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- use conform
 -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -64,7 +64,12 @@ if vim.env.TERMUX_VERSION then
 end
 
 -- Clipboard
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+-- opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+if vim.env.SSH_TTY then
+	vim.g.clipboard = "osc52"
+end
+
+vim.opt.clipboard = "unnamedplus"
 
 -- Window splits
 opt.splitright = true

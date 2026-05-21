@@ -2,6 +2,7 @@ local lsp_servers = {
 	"lua_ls",
 	"rust_analyzer",
 	"clangd",
+	"basedpyright",
 	"ruff",
 	"bashls",
 	"jsonls",
@@ -11,12 +12,19 @@ local lsp_servers = {
 	"tailwindcss",
 	"dockerls",
 	"eslint",
+	"vue_ls",
 	"vtsls",
 	"neocmake",
-	"asm_lsp",
 	-- "sqls",
 	"fish_lsp",
+	"nixd",
 	"asm_lsp",
+	"hls",
+	"elixirls",
+	"taplo",
+	"matlab_ls",
+	"gh_actions_ls",
+	"make_ls",
 }
 
 -- you need have vue-language-server exe in your PATH !
@@ -50,11 +58,66 @@ vim.lsp.config("vtsls", {
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 })
 
-vim.lsp.config("asm_lsp", {
-	cmd = { "asm-lsp" },
-	filetypes = { "asm", "nasm" },
-}
-)
+vim.lsp.config("tailwindcss", {
+	-- filetypes copied and adjusted from tailwindcss-intellisense
+	filetypes = {
+		-- html
+		"aspnetcorerazor",
+		"astro",
+		"astro-markdown",
+		"blade",
+		"clojure",
+		"django-html",
+		"htmldjango",
+		"edge",
+		"eelixir", -- vim ft
+		"elixir",
+		"ejs",
+		"erb",
+		"eruby", -- vim ft
+		"gohtml",
+		"gohtmltmpl",
+		"haml",
+		"handlebars",
+		"hbs",
+		"html",
+		"htmlangular",
+		"html-eex",
+		"heex",
+		"jade",
+		"leaf",
+		"liquid",
+		-- "markdown",
+		"mdx",
+		"mustache",
+		"njk",
+		"nunjucks",
+		"php",
+		"razor",
+		"slim",
+		"twig",
+		-- css
+		"css",
+		"less",
+		"postcss",
+		"sass",
+		"scss",
+		"stylus",
+		"sugarss",
+		-- js
+		"javascript",
+		"javascriptreact",
+		"reason",
+		"rescript",
+		"typescript",
+		"typescriptreact",
+		-- mixed
+		"vue",
+		"svelte",
+		"templ",
+	},
+})
+
 -- sqls 的配置
 -- 在打开目录下创建 config.yml
 -- connections:
@@ -64,14 +127,6 @@ vim.lsp.config("asm_lsp", {
 -- vim.lsp.config("sqls", {
 -- 	cmd = { "sqls", "-config", "config.yml" },
 -- })
-
--- 按需加载Vue语言服务器配置
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "vue",
-	callback = function()
-		vim.lsp.enable("vue_ls")
-	end,
-})
 
 -- Emmet 服务器
 -- vim.api.nvim_create_autocmd("FileType", {

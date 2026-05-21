@@ -1,2 +1,8 @@
 nvim-pack-lock.json
 .codex
+test/
+
+.DS_Store
+**/.DS_Store
+
+.antigravitycli/

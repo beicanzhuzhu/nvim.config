@@ -22,6 +22,7 @@ ts.install({
 	"c",
 	"bash",
 	"make",
+	"latex",
 	"markdown",
 	"markdown_inline",
 	"matlab",
@@ -41,6 +42,7 @@ ts.install({
 	"zsh",
 	"zig",
 	"yaml",
+	"haskell",
 })
 
 -- 自动启用ts高亮
