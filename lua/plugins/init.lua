@@ -11,7 +11,7 @@ vim.pack.add({
 
 	-- UI
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	-- { src = "https://github.com/nvim-lualine/lualine.nvim" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 
 	{ src = "https://github.com/nvchad/base46" },
 	{ src = "https://github.com/nvzone/volt" },
@@ -19,7 +19,7 @@ vim.pack.add({
 
 	-- { src = "https://github.com/nvim-mini/mini.indentscope" },
 	{ src = "https://github.com/saghen/blink.indent" },
-	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
+	-- { src = "https://github.com/rachartier/tiny-cmdline.nvim" },
 
 	-- LSP and diagnostics
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -105,7 +105,7 @@ require("plugins.nvim-treesitter")
 require("plugins.blink-cmp")
 require("plugins.blink-pairs")
 require("plugins.conform")
--- require("plugins.lualine")
+require("plugins.lualine")
 require("plugins.nvchad")
 require("plugins.gitsigns")
 require("plugins.mini-surround")
@@ -120,7 +120,7 @@ require("plugins.nvim-ts-autotag")
 require("plugins.nvim-ufo")
 require("plugins.todo-comments")
 require("plugins.blink-indent")
-require("plugins.tiny-cmdline")
+-- require("plugins.tiny-cmdline")
 require("plugins.flash")
 -- require("plugins.mini-files")
 -- require("plugins.multicursor-nvim") -- lazy loaded
