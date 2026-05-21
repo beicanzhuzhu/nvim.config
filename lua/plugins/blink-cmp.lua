@@ -1,25 +1,110 @@
 -- Blink.cmp(autocompletion)
-require("blink.cmp").setup({
+
+local cmp = require("blink.cmp")
+
+cmp.build():wait(60000)
+
+cmp.setup({
+	enabled = function()
+		-- :set buftype?
+		-- :set filetype?
+		local ft = vim.bo.filetype
+		local bt = vim.bo.buftype
+
+		-- disable for dapui
+		if ft:match("^dap%-") then
+			return false
+		end
+
+		-- 所有 nofile 都不开启
+		if bt ~= "" and ft ~= "sql" then
+			return false
+		end
+
+		return true
+	end,
 	keymap = {
 		preset = "enter",
-		["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+		["<C-h>"] = { "show", "show_documentation", "hide_documentation" },
 		["<CR>"] = { "accept", "fallback" },
+		["<C-l>"] = { "accept", "fallback" },
 		["<C-Down>"] = { "scroll_documentation_down", "fallback" },
 		["<C-Up>"] = { "scroll_documentation_up", "fallback" },
 		["<Tab>"] = { "snippet_forward", "fallback" },
 		["<S-Tab>"] = { "snippet_backward", "fallback" },
-		["<Up>"] = { "select_prev", "fallback" },
-		["<Down>"] = { "select_next", "fallback" },
-		["<C-n>"] = { "select_next", "fallback" },
-		["<C-p>"] = { "select_prev", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback" },
+		["<C-j>"] = { "select_next", "fallback" },
+		-- ["<Up>"] = {},
+		-- ["<Down>"] = {},
+		-- ["<C-n>"] = { "select_next", "fallback" },
+		-- ["<C-p>"] = { "select_prev", "fallback" },
 		["<C-e>"] = { "hide", "fallback" },
 	},
+
 	fuzzy = { implementation = "prefer_rust_with_warning" },
+
+	snippets = { preset = "default" },
+
 	completion = {
 		documentation = {
 			auto_show = false,
-			auto_show_delay_ms = 500,
+			auto_show_delay_ms = 800,
 		},
-		ghost_text = { enabled = false },
+		ghost_text = { enabled = true },
+		menu = {
+			border = nil,
+			auto_show = true,
+		},
 	},
+
+	cmdline = {
+		enabled = true,
+		completion = { menu = { auto_show = false } },
+		sources = {
+			default = { "cmdline" },
+		},
+		keymap = {
+			-- ["<Tab>"] = {},
+			-- ["<S-Tab>"] = {},
+
+			["<C-l>"] = { "accept", "fallback" },
+			["<CR>"] = { "accept_and_enter", "fallback" },
+
+			["<C-k>"] = { "select_prev", "fallback" },
+			["<C-j>"] = { "select_next", "fallback" },
+		},
+	},
+
+	term = {
+		enabled = false,
+	},
+
+	sources = {
+
+		default = { "lsp", "dadbod_grip", "snippets", "path", "buffer" },
+
+		providers = {
+
+			snippets = { score_offset = 100 },
+
+			lsp = { score_offset = 90 },
+
+			path = { score_offset = 30 },
+
+			buffer = {
+				score_offset = 20,
+				min_keyword_length = 2,
+				max_items = 4,
+			},
+
+			dadbod_grip = {
+				score_offset = 80,
+				name = "Grip SQL",
+				module = "dadbod-grip.completion.blink",
+			},
+		},
+	},
+
+	-- Experimental signature help support
+	signature = { enabled = true },
 })

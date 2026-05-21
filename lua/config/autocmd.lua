@@ -19,12 +19,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- force filetype detect
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+-- Restore cursor to file position in previous editing session
+vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function(args)
-		local b = args.buf
-		if vim.bo[b].buftype == "" and vim.api.nvim_buf_get_name(b) ~= "" and vim.bo[b].filetype == "" then
-			vim.cmd("silent! filetype detect")
+		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+		local line_count = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] > 0 and mark[1] <= line_count then
+			vim.cmd('normal! g`"zz')
 		end
 	end,
 })
@@ -98,4 +99,14 @@ local function dashboard()
 	end
 end
 
-vim.api.nvim_create_autocmd("VimEnter", { callback = dashboard })
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"help",
+		"gitsigns-blame",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
+})

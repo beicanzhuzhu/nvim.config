@@ -1,8 +1,8 @@
 require("neo-tree").setup({
 	close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-	popup_border_style = "NC", -- or "" to use 'winborder' on Neovim v0.11+
+	popup_border_style = "", -- or "" to use 'winborder' on Neovim v0.11+
 	clipboard = {
-		sync = "none", -- or "global"/"universal" to share a clipboard for each/all Neovim instance(s), respectively
+		sync = "global", -- or "global"/"universal" to share a clipboard for each/all Neovim instance(s), respectively
 	},
 	enable_git_status = true,
 	enable_diagnostics = true,
@@ -39,6 +39,7 @@ require("neo-tree").setup({
 			folder_closed = "",
 			folder_open = "",
 			folder_empty = "󰜌",
+			folder_empty_open = "",
 			provider = function(icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
 				if node.type == "file" or node.type == "terminal" then
 					local success, web_devicons = pcall(require, "nvim-web-devicons")
@@ -91,16 +92,6 @@ require("neo-tree").setup({
 			enabled = true,
 			width = 10, -- width of the column
 			required_width = 122, -- min width of window required to show this column
-		},
-		last_modified = {
-			enabled = true,
-			width = 20, -- width of the column
-			required_width = 88, -- min width of window required to show this column
-		},
-		created = {
-			enabled = true,
-			width = 20, -- width of the column
-			required_width = 110, -- min width of window required to show this column
 		},
 		symlink_target = {
 			enabled = false,

@@ -1,12 +1,11 @@
 return {
-	name = "Pgsql quick run",
+	name = "Haskell quick run",
 	builder = function()
 		local file = vim.fn.expand("%:p")
 
 		return {
 			cmd = {
-				"psql",
-				"-f",
+				"runghc",
 				file,
 			},
 			components = {
@@ -14,8 +13,8 @@ return {
 					"open_output",
 					direction = "float",
 					focus = true,
-					on_start = "never",
-					on_complete = "always",
+					on_start = "always",
+					on_complete = "never",
 				},
 				"on_exit_set_status",
 				"on_complete_dispose",
@@ -23,6 +22,6 @@ return {
 		}
 	end,
 	condition = {
-		filetype = { "sql" },
+		filetype = { "haskell" },
 	},
 }

@@ -41,10 +41,11 @@ map("n", "[c", function()
 	end
 end, { desc = "Go to prev git hunk" })
 
--- Toggle git blame
-vim.keymap.set("n", "<leader>ig", function()
-	require("gitsigns").toggle_current_line_blame()
-end, { desc = "Toggle git blame" })
+-- Toggle git blame line
+map("n", "<leader>ib", gitsigns.toggle_current_line_blame, { desc = "Toggle git blame inline" })
+
+map("n", "<leader>gb", gitsigns.blame, { desc = "Toggle git blame" })
 
 -- show diff hunk inline
 map("n", "<leader>gd", gitsigns.preview_hunk_inline, { desc = "Inline preview" })
+map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })

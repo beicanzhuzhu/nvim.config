@@ -22,10 +22,10 @@ map("n", "<C-k>", "<C-w>k", { desc = "Focus above window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
 
 -- Window splitting (leader + hjkl)
-map("n", "<leader>l", "<cmd>set splitright<CR><cmd>vsplit<CR>", { desc = "Split right" })
-map("n", "<leader>j", "<cmd>set splitbelow<CR><cmd>split<CR>", { desc = "Split below" })
-map("n", "<leader>h", "<cmd>set nosplitright<CR><cmd>vsplit<CR><cmd>set splitright<CR>", { desc = "Split left" })
-map("n", "<leader>k", "<cmd>set nosplitbelow<CR><cmd>split<CR><cmd>set splitbelow<CR>", { desc = "Split above" })
+-- map("n", "<leader>l", "<cmd>set splitright<CR><cmd>vsplit<CR>", { desc = "Split right" })
+-- map("n", "<leader>j", "<cmd>set splitbelow<CR><cmd>split<CR>", { desc = "Split below" })
+-- map("n", "<leader>h", "<cmd>set nosplitright<CR><cmd>vsplit<CR><cmd>set splitright<CR>", { desc = "Split left" })
+-- map("n", "<leader>k", "<cmd>set nosplitbelow<CR><cmd>split<CR><cmd>set splitbelow<CR>", { desc = "Split above" })
 
 -- Window resizing (Ctrl + arrows)
 map("n", "<C-Up>", "<cmd>resize -2<CR>", { desc = "Decrease height" })
@@ -43,9 +43,22 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase width" }
 -- end, { desc = "Open terminal" })
 map("t", "<C-q>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
--- helix move
-map("n", "gs", "0", { desc = "Move to left" })
-map("n", "gl", "$", { desc = "Move to right" })
+map("n", "<leader>t", function()
+	require("nvchad.term").toggle({
+		pos = "float",
+		id = "floatTerm",
+	})
+end, { desc = "NvChad floating terminal" })
+
+map("t", "<leader>t", function()
+	require("nvchad.term").toggle({
+		pos = "float",
+		id = "floatTerm",
+	})
+end, { desc = "Toggle NvChad floating terminal" })
+
+map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "bn" })
+map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "bp" })
 
 -- move code
 map("n", "<A-k>", ":move .-2<CR>==", { noremap = true, silent = true })
@@ -54,13 +67,30 @@ map("n", "<A-j>", ":move .+1<CR>==", { noremap = true, silent = true })
 map("n", "<A-Up>", ":move .-2<CR>==", { noremap = true, silent = true })
 map("n", "<A-Down>", ":move .+1<CR>==", { noremap = true, silent = true })
 
+-- visual mode 移动选中块
+map("v", "<A-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+map("v", "<A-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+
+map("v", "<A-Up>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+map("v", "<A-Down>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+
 -- change x to helix mode
-map("n", "x", "V", { noremap = true, silent = true })
-map("v", "x", "<Esc>", { noremap = true, silent = true })
+map("n", "x", function()
+	local count = vim.v.count1
+	vim.cmd("normal! V")
+	if count > 1 then
+		vim.cmd("normal! " .. (count - 1) .. "j")
+	end
+end, { noremap = true, silent = true, desc = "Helix-style line select" })
+map("v", "x", "<Esc>", { noremap = true, silent = true, desc = "Helix-style x to esc v mode" })
 
 -- Half-page scrolling for Shift/Page keys
-map("n", "<S-Up>", "<C-u>", { desc = "Half page up" })
-map("n", "<S-Down>", "<C-d>", { desc = "Half page down" })
+-- map("n", "<S-Up>", "<C-u>", { desc = "Half page up" })
+-- map("n", "<S-Down>", "<C-d>", { desc = "Half page down" })
+
+-- map("n", "<leader>T", function()
+-- 	require("nvchad.themes").open()
+-- end, { desc = "Toggle themes" })
 
 -- Yank whole file without moving cursor
 map("n", "<leader>u", function()
@@ -69,14 +99,17 @@ map("n", "<leader>u", function()
 	vim.fn.winrestview(view)
 end, { desc = "Yank whole file without moving cursor" })
 
+-- W 也可以保存
+vim.api.nvim_create_user_command("W", "w", {})
+
 -- Toggle cmdheight
-map("n", "<leader>z", function()
-	if vim.o.cmdheight == 0 then
-		vim.o.cmdheight = 1
-	else
-		vim.o.cmdheight = 0
-	end
-end, { silent = true, desc = "Toggle cmdheight" })
+-- map("n", "<leader>z", function()
+-- 	if vim.o.cmdheight == 0 then
+-- 		vim.o.cmdheight = 1
+-- 	else
+-- 		vim.o.cmdheight = 0
+-- 	end
+-- end, { silent = true, desc = "Toggle cmdheight" })
 
 
 
@@ -118,17 +151,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Documentation and help
 		map("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "LSP: Hover documentation" })
-		map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = buf, desc = "LSP: Signature help" })
 
 		-- Code actions
 		map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: Code action" })
-		map("n", "<leader>r", vim.lsp.buf.rename, { buffer = buf, desc = "LSP: Rename symbol" })
+		map("n", "<leader>r", require("nvchad.lsp.renamer"), {
+			buffer = buf,
+			desc = "LSP: Rename symbol",
+		})
 
 		-- Diagnostics
 		-- map("n", "<leader>e", vim.diagnostic.open_float, { buffer = buf, desc = "LSP: Show diagnostics" })
-		map("n", "<leader>D", function()
-			vim.diagnostic.open_float({ source = true })
-		end, { buffer = buf, desc = "LSP: Show diagnostics with source" })
+		-- map("n", "<leader>D", function()
+		-- 	vim.diagnostic.open_float({ source = true })
+		-- end, { buffer = buf, desc = "LSP: Show diagnostics with source" })
 
 		-- 快速复制lsp信息
 
