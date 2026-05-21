@@ -119,6 +119,10 @@ M.nvdash = {
 	},
 }
 
+M.lsp = {
+	signature = false,
+}
+
 M.term = {
 	startinsert = true,
 	base46_colors = true,
