@@ -16,8 +16,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 M.base46 = {
-	theme = "tokyonight",
-
+	theme = "tokyodark",
 	integrations = {
 		"blink",
 		"blink-pair",
@@ -58,7 +57,7 @@ M.ui = {
 	telescope = { style = "borderless" },
 
 	statusline = {
-		enabled = false,
+		enabled = true,
 		theme = "default", -- default/vscode/vscode_colored/minimal
 		-- default/round/block/arrow separators work only for default statusline theme
 		-- round and block will work for minimal theme only

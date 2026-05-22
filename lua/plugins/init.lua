@@ -11,7 +11,8 @@ vim.pack.add({
 
 	-- UI
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
+	{ src = "https://github.com/folke/tokyonight.nvim" },
+	-- { src = "https://github.com/nvim-lualine/lualine.nvim" },
 
 	{ src = "https://github.com/nvchad/base46" },
 	{ src = "https://github.com/nvzone/volt" },
@@ -105,7 +106,7 @@ require("plugins.nvim-treesitter")
 require("plugins.blink-cmp")
 require("plugins.blink-pairs")
 require("plugins.conform")
-require("plugins.lualine")
+-- require("plugins.lualine")
 require("plugins.nvchad")
 require("plugins.gitsigns")
 require("plugins.mini-surround")
