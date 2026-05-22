@@ -1,6 +1,15 @@
 -- Conform
 require("conform").setup({
-	format_on_save = { timeout_ms = 2000, lsp_format = "fallback" },
+	format_on_save = function()
+		if not vim.g.autoformat_enabled then
+			return nil
+		end
+
+		return {
+			timeout_ms = 2000,
+			lsp_format = "fallback",
+		}
+	end,
 
 	formatters = {
 		clang_format = {

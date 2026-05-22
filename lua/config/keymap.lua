@@ -99,8 +99,14 @@ map("n", "<leader>u", function()
 	vim.fn.winrestview(view)
 end, { desc = "Yank whole file without moving cursor" })
 
+map("n", "<leader>F", function()
+	vim.g.autoformat_enabled = not vim.g.autoformat_enabled
+end, { desc = "Toggle autoformat" })
+
 -- W 也可以保存
-vim.api.nvim_create_user_command("W", "w", {})
+vim.api.nvim_create_user_command("W", "w", { desc = "write!" })
+-- Q 也可以退出
+vim.api.nvim_create_user_command("Q", "q", { desc = "quit!" })
 
 -- Toggle cmdheight
 -- map("n", "<leader>z", function()
