@@ -1,5 +1,6 @@
+---@type overseer.TemplateFileDefinition
 return {
-	name = "Python quick run",
+	name = "Quick run: python",
 	builder = function()
 		local file = vim.fn.expand("%:p")
 

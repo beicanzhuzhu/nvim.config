@@ -147,9 +147,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gr", telescope_builtin.lsp_references, { buffer = buf, desc = "LSP: Find references" })
 		map("n", "gy", telescope_builtin.lsp_type_definitions, { buffer = buf, desc = "LSP: Go to type definition" })
 
-		-- Documentation and help
-		map("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "LSP: Hover documentation" })
-
 		-- Code actions
 		map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: Code action" })
 		map("n", "<leader>r", require("nvchad.lsp.renamer"), {

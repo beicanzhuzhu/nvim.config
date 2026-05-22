@@ -1,5 +1,6 @@
+---@type overseer.TemplateFileDefinition
 return {
-	name = "Rust quick run",
+	name = "Quick run: rust",
 	builder = function()
 		local file = vim.fn.expand("%:p")
 		local filename = vim.fn.expand("%:t:r")
