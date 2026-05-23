@@ -44,6 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"help",
 		"qf",
 		"gitsigns-blame",
+		"OverseerOutput",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
