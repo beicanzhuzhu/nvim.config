@@ -3,6 +3,7 @@ local opt = vim.opt
 
 -- 隐藏命令行
 opt.cmdheight = 0
+opt.showcmd = false
 opt.laststatus = 3
 
 opt.shortmess:append("I")
