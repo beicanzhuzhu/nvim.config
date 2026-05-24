@@ -101,7 +101,15 @@ map("n", "<leader>ot", function()
 						actions.close(prompt_bufnr)
 						local sel = action_state.get_selected_entry()
 						if sel then
-							tmpl_module.build_task(sel.value, { params = {}, search = search_opts }, function(_, task)
+							local tmpl = sel.value
+							if tmpl.cmake_tools_command then
+								vim.schedule(function()
+									vim.cmd(tmpl.cmake_tools_command)
+								end)
+								return
+							end
+
+							tmpl_module.build_task(tmpl, { params = {}, search = search_opts }, function(_, task)
 								if task then
 									-- 添加保护 在 telescope 关闭之后在运行
 									vim.schedule(function()

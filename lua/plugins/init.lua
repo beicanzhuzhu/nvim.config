@@ -178,9 +178,15 @@ lazy.command_stub("ToggleCPH", load_cph)
 
 ---------------------------------------- overseer ----------------------------------------
 
+local overseer_loaded = false
+
 local function load_overseer()
+	if overseer_loaded then
+		return
+	end
 	vim.pack.add({ { src = "https://github.com/stevearc/overseer.nvim" } })
 	require("plugins.overseer")
+	overseer_loaded = true
 end
 
 lazy.keymap_stub("n", "<leader>oo", load_overseer, { desc = "Overseer: toggle task list" })
@@ -192,6 +198,52 @@ lazy.command_stub("OverseerToggle", load_overseer)
 lazy.command_stub("OverseerRun", load_overseer)
 lazy.command_stub("OverseerShell", load_overseer)
 lazy.command_stub("OverseerTaskAction", load_overseer)
+
+--------------------------------------camke-tools---------------------------------------
+
+local cmake_tools_loaded = false
+
+local function cmake_project_root()
+  	local path = vim.api.nvim_buf_get_name(0)
+
+  	if path == "" or path:find("://", 1, true) then
+  		path = vim.uv.cwd()
+  	else
+  		local stat = vim.uv.fs_stat(path)
+  		if not stat or stat.type ~= "directory" then
+  			path = vim.fs.dirname(path)
+  		end
+  	end
+
+  	if not path then
+  		return nil
+  	end
+
+  	local cmakelists = vim.fs.find("CMakeLists.txt", {
+  		path = path,
+  		upward = true,
+  	})[1]
+
+  	return cmakelists and vim.fs.dirname(cmakelists) or nil
+end
+
+local function load_cmake_tools()
+  	if cmake_tools_loaded or not cmake_project_root() then
+  		return
+  	end
+
+  	load_overseer()
+  	vim.pack.add({ { src = "https://github.com/Civitasv/cmake-tools.nvim" } })
+  	require("plugins.cmake-tools")
+
+  	cmake_tools_loaded = true
+end
+
+-- 只在进入cmakelist.txt的目录时才加载插件
+vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "DirChanged" }, {
+  	group = vim.api.nvim_create_augroup("LazyCMakeTools", { clear = true }),
+  	callback = load_cmake_tools,
+})
 
 ---------------------------------------- dap ----------------------------------------
 
