@@ -42,7 +42,9 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"help",
+		"qf",
 		"gitsigns-blame",
+		"OverseerOutput",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false

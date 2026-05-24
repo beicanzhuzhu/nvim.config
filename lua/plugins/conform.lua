@@ -5,7 +5,7 @@ require("conform").setup({
 	formatters = {
 		clang_format = {
 			prepend_args = {
-				"--style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Always, TabWidth: 4}",
+				"--style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Always, TabWidth: 4, AllowShortFunctionsOnASingleLine: None}",
 			},
 		},
 		rustfmt = {

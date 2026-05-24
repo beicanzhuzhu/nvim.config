@@ -99,8 +99,14 @@ map("n", "<leader>u", function()
 	vim.fn.winrestview(view)
 end, { desc = "Yank whole file without moving cursor" })
 
+map("n", "<leader>F", function()
+	vim.g.autoformat_enabled = not vim.g.autoformat_enabled
+end, { desc = "Toggle autoformat" })
+
 -- W 也可以保存
-vim.api.nvim_create_user_command("W", "w", {})
+vim.api.nvim_create_user_command("W", "w", { desc = "write!" })
+-- Q 也可以退出
+vim.api.nvim_create_user_command("Q", "q", { desc = "quit!" })
 
 -- Toggle cmdheight
 -- map("n", "<leader>z", function()
@@ -146,9 +152,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "gi", telescope_builtin.lsp_implementations, { buffer = buf, desc = "LSP: Go to implementation" })
 		map("n", "gr", telescope_builtin.lsp_references, { buffer = buf, desc = "LSP: Find references" })
 		map("n", "gy", telescope_builtin.lsp_type_definitions, { buffer = buf, desc = "LSP: Go to type definition" })
-
-		-- Documentation and help
-		map("n", "K", vim.lsp.buf.hover, { buffer = buf, desc = "LSP: Hover documentation" })
 
 		-- Code actions
 		map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: Code action" })

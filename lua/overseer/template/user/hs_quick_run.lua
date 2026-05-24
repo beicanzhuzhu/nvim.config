@@ -1,5 +1,6 @@
+---@type overseer.TemplateFileDefinition
 return {
-	name = "Haskell quick run",
+	name = "Quick run: haskell",
 	builder = function()
 		local file = vim.fn.expand("%:p")
 

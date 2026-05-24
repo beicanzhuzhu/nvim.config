@@ -62,8 +62,13 @@ M.ui = {
 		-- default/round/block/arrow separators work only for default statusline theme
 		-- round and block will work for minimal theme only
 		separator_style = "default",
-		order = nil,
-		modules = nil,
+		order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "autoformat", "cwd", "cursor" },
+		modules = {
+			autoformat = function()
+				local enabled = vim.g.autoformat_enabled
+				return " " .. (enabled and "󰉼 Fmt: on" or "󰉿 Fmt: off") .. " "
+			end,
+		},
 	},
 }
 
@@ -125,7 +130,7 @@ M.term = {
 		row = 0.1,
 		col = 0.1,
 		width = 0.8,
-		height = 0.8,
+		height = 0.7,
 		border = "single",
 	},
 }

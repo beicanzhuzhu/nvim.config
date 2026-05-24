@@ -1,5 +1,6 @@
+---@type overseer.TemplateFileDefinition
 return {
-	name = "Debug build",
+	name = "Debug build: c/c++",
 	builder = function()
 		local file = vim.fn.expand("%:p")
 		local filename = vim.fn.expand("%:t:r")
