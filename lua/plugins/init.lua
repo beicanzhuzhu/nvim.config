@@ -61,7 +61,7 @@ vim.pack.add({
 
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 
-	{ src = "https://github.com/saghen/blink.pairs", version = vim.version.range("*") },
+	{ src = "https://github.com/saghen/blink.pairs" },
 
 	-- { src = "https://github.com/jake-stewart/multicursor.nvim" },
 
