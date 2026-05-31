@@ -6,7 +6,13 @@
 --
 -- vim.api.nvim_set_hl(0, "BlinkPairsMatchParen", { link = "PmenuSel" })
 
-require("blink.pairs").setup({
+local pairs = require("blink.pairs")
+
+if pairs.download then
+	pairs.download():pwait(60000)
+end
+
+pairs.setup({
 
 	mappings = {
 		enabled = true,

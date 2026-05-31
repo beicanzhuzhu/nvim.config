@@ -1,51 +1,48 @@
 {
-  "code": {
-    "prefix": "code",
+  "luogucode": {
+    "prefix": "luogu",
     "body": [
-      "// Create by ShangYJQ.",
+      "// Create by BCYZ.",
       "// ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
       "",
-      "#include <iostream>",
+      "#include <bits/stdc++.h>",
       "using namespace std;",
-      "",
-      "signed main()",
+      "using ll = long long;",
+      "int main()",
       "{",
-      "\tcin.tie(nullptr)->sync_with_stdio(false);",
-      "\t",
+      "\tios::sync_with_stdio(false);",
+      "\tcin.tie(0);",
+	  "\t",
       "\t$1",
       "\t",
       "\treturn 0;",
       "}"
     ],
-    "description": "Start code!"
+    "description": "洛谷/atcoder风格板子"
   },
-  "fastread": {
-    "prefix": "fastread",
+    "cfcode": {
+    "prefix": "cf",
     "body": [
-      "inline int read()",
+      "// Create by BCYZ.",
+      "// ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "",
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "using ll = long long;",
+	  "void solve()",
+	  "{",
+	  "\t$1",
+	  "}",
+      "int main()",
       "{",
-      "\tint x = 0, f = 1;",
-      "\tchar c = getchar();",
-      "\twhile (c < '0' || c > '9')",
-      "\t{",
-      "\t\tif (c == '-')",
-      "\t\t\tf = -1;",
-      "\t\tc = getchar();",
-      "\t}",
-      "\twhile (((c - '0') | ('9' - c)) >= 0)",
-      "\t{",
-      "\t\tx = (x << 1) + (x << 3) + (c ^ 48);",
-      "\t\tc = getchar();",
-      "\t}",
-      "\treturn x * f;",
-      "}",
-      "$1"
+      "\tios::sync_with_stdio(false);",
+      "\tcin.tie(0)",
+	  "\tint t;cin>>t;",
+      "\twhile(t--) solve();",
+      "\t",
+      "\treturn 0;",
+      "}"
     ],
-    "description": "Fast read"
-  },
-  "#guard": {
-    "prefix": "#guard",
-    "body": ["#ifndef ${1:XXX_H}", "#define $1", "", "$0", "", "#endif  // $1"],
-    "description": "header guard. input once, reuse in ifndef/define/endif"
+    "description": "cf风格板子"
   }
 }

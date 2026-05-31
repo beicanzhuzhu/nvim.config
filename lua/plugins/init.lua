@@ -7,11 +7,10 @@ vim.pack.add({
 
 	---------------------------------------- core plugins ----------------------------------------
 
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 
 	-- UI
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/folke/tokyonight.nvim" },
 	-- { src = "https://github.com/nvim-lualine/lualine.nvim" },
 
 	{ src = "https://github.com/nvchad/base46" },
@@ -62,16 +61,7 @@ vim.pack.add({
 
 	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 
-	{
-		src = "https://github.com/saghen/blink.pairs",
-		data = {
-			-- NOTE: need rust nightly for build
-			-- cd ~/.local/share/nvim/site/pack/core/opt/blink.pairs
-			-- rustup override set nightly
-			-- cargo build --release
-			build = "cargo build --release",
-		},
-	},
+	{ src = "https://github.com/saghen/blink.pairs", version = vim.version.range("*") },
 
 	-- { src = "https://github.com/jake-stewart/multicursor.nvim" },
 
@@ -102,7 +92,7 @@ vim.pack.add({
 	-- { src = "https://github.com/beicanzhuzhu/cph.nvim" },
 })
 
-require("plugins.nvim-treesitter")
+require("plugins.tree-sitter-manager")
 require("plugins.blink-cmp")
 require("plugins.blink-pairs")
 require("plugins.conform")

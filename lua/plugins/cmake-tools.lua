@@ -14,6 +14,12 @@ cmake.setup({
   	ctest_command = "ctest",
   	cmake_use_preset = true,
   	cmake_regenerate_on_save = true,
+	cmake_build_directory = function()
+    if require("cmake-tools.osys").iswin32 then
+		return "build\\${variant:buildType}"
+    end
+		return "build/${variant:buildType}"
+	end,
   	cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" },
 
   	cmake_executor = {

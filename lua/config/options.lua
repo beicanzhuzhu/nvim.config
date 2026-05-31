@@ -28,6 +28,8 @@ opt.winborder = "rounded"
 opt.whichwrap = "<,>,[,],h,l"
 opt.wrap = false
 
+opt.updatetime = 250
+
 -- listchars
 opt.list = true
 opt.listchars = {
@@ -42,7 +44,7 @@ opt.softtabstop = tablen
 opt.shiftwidth = tablen
 opt.expandtab = false
 opt.autoindent = true
-opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+-- opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- use conform
 -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
