@@ -4,19 +4,35 @@ local cmp = require("blink.cmp")
 
 cmp.build():pwait(60000)
 
-local function filter_snippets_by_prefix(ctx, items)
-	local keyword = ctx.get_keyword()
+---@param ctx blink.cmp.Context
+---@param items blink.cmp.CompletionItem[]
+---@return blink.cmp.CompletionItem[]
+local function prefix_only_items(ctx, items)
+	local keyword = ctx:get_keyword():lower()
 
 	if keyword == "" then
-		return items
+		return {}
 	end
 
-	keyword = keyword:lower()
-
 	return vim.tbl_filter(function(item)
-		local label = item.filterText or item.label or item.insertText or ""
-		return label:lower():sub(1, #keyword) == keyword
+		local text = (item.filterText or item.label or ""):lower()
+		return vim.startswith(text, keyword)
 	end, items)
+end
+
+---@param source blink.cmp.Source
+---@param ctx blink.cmp.Context
+---@param callback fun(response?: blink.cmp.CompletionResponse)
+local function get_prefix_only_completions(source, ctx, callback)
+	return source:get_completions(ctx, function(response)
+		response = response or { items = {} }
+		response.items = prefix_only_items(ctx, response.items or {})
+
+		response.is_incomplete_forward = true
+		response.is_incomplete_backward = true
+
+		callback(response)
+	end)
 end
 
 cmp.setup({
@@ -104,18 +120,10 @@ cmp.setup({
 		providers = {
 
 			snippets = {
-				score_offset = 60,
-				transform_items = filter_snippets_by_prefix,
-				should_show_items = function(ctx)
-					local line = ctx.get_line()
-					local before_cursor = line:sub(1, ctx.cursor[2])
-
-					return not (
-						before_cursor:match("%.$")
-						or before_cursor:match("::$")
-						or before_cursor:match("%-%>$")
-					)
-				end,
+				score_offset = 100,
+				override = {
+					get_completions = get_prefix_only_completions,
+				},
 			},
 
 			lsp = { score_offset = 90 },
