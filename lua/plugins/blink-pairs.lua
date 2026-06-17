@@ -8,11 +8,7 @@
 
 local pairs = require("blink.pairs")
 
-if pairs.build then
-	pairs.build():pwait(60000)
-elseif pairs.download then
-	pairs.download():pwait(60000)
-end
+pairs.build():pwait(60000)
 
 pairs.setup({
 
