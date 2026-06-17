@@ -14,7 +14,7 @@ return {
 				"-c",
 				"mkdir -p '"
 					.. out_dir
-					.. "' && clang++ '"
+					.. "' && g++ '"
 					.. file
 					.. "' -std=c++23 -o '"
 					.. exe

@@ -36,7 +36,7 @@
       "int main()",
       "{",
       "\tios::sync_with_stdio(false);",
-      "\tcin.tie(0)",
+      "\tcin.tie(0);",
 	  "\tint t;cin>>t;",
       "\twhile(t--) solve();",
       "\t",

@@ -12,7 +12,7 @@ return {
 			cmd = {
 				"bash",
 				"-c",
-				"mkdir -p '" .. out_dir .. "' && clang '" .. file .. "' -std=c23 -o '" .. exe .. "' && '" .. exe .. "'",
+				"mkdir -p '" .. out_dir .. "' && gcc '" .. file .. "' -std=c23 -o '" .. exe .. "' && '" .. exe .. "'",
 			},
 			components = {
 				{
