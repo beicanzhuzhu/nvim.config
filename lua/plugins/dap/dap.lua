@@ -1,9 +1,14 @@
 local dap = require("dap")
 
+local lldb_dap = vim.fn.exepath("lldb-dap")
+if lldb_dap == "" then
+	lldb_dap = "/opt/homebrew/opt/llvm/bin/lldb-dap"
+end
+
 dap.adapters.lldb = {
 	type = "executable",
 	-- adjust as needed, must be absolute path
-	command = "/opt/homebrew/opt/llvm/bin/lldb-dap", -- MacOS
+	command = lldb_dap,
 	name = "lldb",
 }
 

@@ -204,6 +204,14 @@ lazy.command_stub("OverseerRun", load_overseer)
 lazy.command_stub("OverseerShell", load_overseer)
 lazy.command_stub("OverseerTaskAction", load_overseer)
 
+local function load_dap()
+	vim.pack.add({
+		{ src = "https://codeberg.org/mfussenegger/nvim-dap" },
+		{ src = "https://github.com/igorlfs/nvim-dap-view" },
+	})
+	require("plugins.dap")
+end
+
 --------------------------------------camke-tools---------------------------------------
 
 local cmake_tools_loaded = false
@@ -238,6 +246,7 @@ local function load_cmake_tools()
   	end
 
   	load_overseer()
+	load_dap()
   	vim.pack.add({ { src = "https://github.com/Civitasv/cmake-tools.nvim" } })
   	require("plugins.cmake-tools")
 
@@ -251,14 +260,6 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "DirChanged" }, {
 })
 
 ---------------------------------------- dap ----------------------------------------
-
-local function load_dap()
-	vim.pack.add({
-		{ src = "https://codeberg.org/mfussenegger/nvim-dap" },
-		{ src = "https://github.com/igorlfs/nvim-dap-view" },
-	})
-	require("plugins.dap")
-end
 
 lazy.keymap_stub("n", "<F5>", load_dap, { desc = "DAP Continue" })
 lazy.keymap_stub("n", "<leader>dn", load_dap, { desc = "DAP Step Over" })
