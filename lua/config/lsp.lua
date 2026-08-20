@@ -8,6 +8,7 @@ local lsp_servers = {
 	"jsonls",
 	"gopls",
 	"zls",
+	"dartls",
 	"unocss",
 	"tailwindcss",
 	"dockerls",
@@ -42,6 +43,16 @@ vim.lsp.config("clangd", {
 		"clangd",
 		"--background-index",
 		"--clang-tidy",
+	},
+})
+
+vim.lsp.config("dartls", {
+	settings = {
+		dart = {
+			autoImportCompletions = true,
+			completeFunctionCalls = false,
+			showTodos = true,
+		},
 	},
 })
 

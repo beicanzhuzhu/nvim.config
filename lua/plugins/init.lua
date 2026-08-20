@@ -7,7 +7,8 @@ vim.pack.add({
 
 	---------------------------------------- core plugins ----------------------------------------
 
-	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/lewis6991/ts-install.nvim" },
 
 	-- UI
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -44,7 +45,9 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	-- { src = "https://github.com/stevearc/oil.nvim" },
 
+	-- git tools
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	-- { src = "https://github.com/esmuellert/codediff.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 	{ src = "https://github.com/folke/flash.nvim" },
@@ -92,13 +95,14 @@ vim.pack.add({
 	-- { src = "https://github.com/beicanzhuzhu/cph.nvim" },
 })
 
-require("plugins.tree-sitter-manager")
+require("plugins.nvim-treesitter")
 require("plugins.blink-cmp")
 require("plugins.blink-pairs")
 require("plugins.conform")
 -- require("plugins.lualine")
 require("plugins.nvchad")
 require("plugins.gitsigns")
+-- require("plugins.codediff") -- lazy loaded
 require("plugins.mini-surround")
 require("plugins.dadbod-grip")
 require("plugins.telescope")
@@ -155,6 +159,17 @@ end
 
 lazy.keymap_stub("n", "<leader>e", load_neotree, { silent = true, desc = " Neotree toggle" })
 lazy.command_stub("Neotree", load_neotree)
+
+---------------------------------------- codediff ----------------------------------------
+
+local function load_codediff()
+	vim.pack.add({
+		{ src = "https://github.com/esmuellert/codediff.nvim" },
+	})
+	require("plugins.codediff")
+end
+
+lazy.command_stub("CodeDiff", load_codediff)
 
 ---------------------------------------- cph ----------------------------------------
 

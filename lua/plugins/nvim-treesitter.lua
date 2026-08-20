@@ -1,5 +1,10 @@
-require("tree-sitter-manager").setup({
-	ensure_installed = {
+local ts = require("ts-install")
+
+ts.setup({
+	auto_install = true,
+	auto_update = true,
+
+	ensure_install = {
 		"html",
 		"css",
 		"vim",
@@ -10,12 +15,12 @@ require("tree-sitter-manager").setup({
 		"javascript",
 		"typescript",
 		"tsx",
+		"dart",
 		"python",
 		"cpp",
 		"c",
 		"bash",
 		"make",
-		"latex",
 		"markdown",
 		"markdown_inline",
 		"matlab",
@@ -38,7 +43,14 @@ require("tree-sitter-manager").setup({
 		"yaml",
 		"haskell",
 	},
-	border = "single",
-	auto_install = false,
-	highlight = true,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("TSHighlight", {
+		clear = true,
+	}),
+	pattern = "*",
+	callback = function(ev)
+		pcall(vim.treesitter.start, ev.buf)
+	end,
 })

@@ -68,6 +68,9 @@ require("conform").setup({
 		-- ormolu
 		haskell = { "ormolu" },
 
+		-- dart format
+		dart = { "dart_format", lsp_format = "fallback" },
+
 		-- mix
 		elixir = { "mix" },
 		eelixir = { "mix" },
