@@ -10,7 +10,12 @@ dap.adapters.lldb = {
 	-- adjust as needed, must be absolute path
 	command = lldb_dap,
 	name = "lldb",
+	options = {
+		initialize_timeout_sec = 10,
+	},
 }
+
+dap.defaults.lldb.focus_terminal = true
 
 dap.configurations.cpp = {
 	{

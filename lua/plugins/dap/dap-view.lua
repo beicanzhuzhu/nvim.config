@@ -4,7 +4,7 @@ require("dap-view").setup({
 		-- You can add a "console" section to merge the terminal with the other views
 		sections = { "scopes", "watches", "console", "exceptions", "breakpoints", "threads", "repl" },
 		-- Must be one of the sections declared above
-		default_section = "scopes",
+		default_section = "console",
 		-- Append hints with keymaps within the labels
 		show_keymap_hints = false,
 		-- List of up to 2 strings, defining left and right separators
