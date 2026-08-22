@@ -1,5 +1,7 @@
 local cmake = require("cmake-tools")
 
+require("plugins.cmake-tools-window").setup()
+
 local overseer_opts = {
 	new_task_opts = {
 		strategy = "jobstart",
