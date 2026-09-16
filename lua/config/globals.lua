@@ -47,3 +47,10 @@ vim.g.editorconfig = false
 
 -- Disable spellfile downloader
 vim.g.loaded_spellfile_plugin = 1
+
+-- Flutter i18n 的 .arb 就是 json
+vim.filetype.add({
+	extension = {
+		arb = "json",
+	},
+})

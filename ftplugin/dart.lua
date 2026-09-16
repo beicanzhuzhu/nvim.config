@@ -5,3 +5,6 @@ vim.opt_local.shiftwidth = 2
 vim.opt_local.expandtab = true
 
 vim.opt_local.cindent = true
+
+-- 与 after/lsp/dartls.lua 里的 dart.lineLength 保持一致
+vim.opt_local.colorcolumn = "100"

@@ -64,8 +64,15 @@ M.ui = {
 		-- default/round/block/arrow separators work only for default statusline theme
 		-- round and block will work for minimal theme only
 		separator_style = "arrow",
-		order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
-		modules = nil,	
+		order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "flutter", "diagnostics", "lsp", "cwd", "cursor" },
+		modules = {
+			-- 当前选中的 Flutter 设备, 渲染逻辑在 lua/flutter/ui.lua.
+			-- 用 package.loaded 判断, 非 Flutter 工程下零开销
+			flutter = function()
+				local ui = package.loaded["flutter.ui"]
+				return ui and ui.statusline() or ""
+			end,
+		},
 	},
 }
 

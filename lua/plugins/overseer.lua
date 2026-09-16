@@ -102,9 +102,12 @@ map("n", "<leader>ot", function()
 						local sel = action_state.get_selected_entry()
 						if sel then
 							local tmpl = sel.value
-							if tmpl.cmake_tools_command then
+							-- 代理条目: 不真的起 task, 直接执行对应插件命令
+							-- (cmake-tools / flutter 都用这个机制)
+							local proxy = tmpl.proxy_command or tmpl.cmake_tools_command
+							if proxy then
 								vim.schedule(function()
-									vim.cmd(tmpl.cmake_tools_command)
+									vim.cmd(proxy)
 								end)
 								return
 							end

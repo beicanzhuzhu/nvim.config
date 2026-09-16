@@ -169,6 +169,46 @@ npm run package
 bun i -g gh-actions-language-server
 ```
 
+#### Dart / Flutter
+
+> [!NOTE]
+> 所有逻辑集中在 `lua/flutter/`，可以原样搬成一个独立插件：
+>
+> | 文件 | 作用 |
+> | --- | --- |
+> | `init.lua` | `setup()` 入口：命令、键位、保存自动热重载 |
+> | `project.lua` | 工程探测（无插件依赖，门控阶段 require） |
+> | `lsp.lua` | dartls 配置 |
+> | `dap.lua` | 调试适配器、热重载、REPL 切换 |
+> | `device.lua` | 设备与模拟器选择 |
+> | `tasks.lua` | overseer 任务模板 |
+> | `ui.lua` | statusline 段、telescope 忽略规则 |
+>
+> 外部只有这些必要接线，各自 1～10 行：`after/lsp/dartls.lua` 与
+> `lua/overseer/template/user/flutter.lua` 是代理（Neovim 与 overseer 都按运行时
+> 路径扫描，位置不能省）；`lua/plugins/init.lua` 是懒加载门控；`lua/chadrc.lua`
+> 是 statusline 委托；`lua/config/globals.lua` 注册 `.arb`（必须在启动期，否则第一个
+> 打开的 `.arb` 赶不上文件类型探测）；`lua/plugins/dap/dap-view.lua` 一行
+> `terminal.hide`。
+
+只需要安装 Flutter SDK，`dartls`、DAP server、格式化器都由 SDK 自带，无需额外插件。
+
+```bash
+# Arch Linux (AUR) 或官方 SDK
+git clone --depth 1 -b stable https://github.com/flutter/flutter.git ~/dev/flutter
+export PATH="$HOME/dev/flutter/bin:$PATH"
+
+flutter doctor
+```
+
+> [!IMPORTANT]
+> `dartls` 靠自身可执行文件的位置推断 Flutter SDK，配置里固定使用
+> `$(dirname $(dirname $(which flutter)))/bin/dart`，所以**不要**再单独安装一个
+> 独立的 dart 并让它排在 PATH 前面。
+
+进入任何含 `pubspec.yaml` 的目录时，Flutter 支持会自动加载（连带 overseer 和 nvim-dap）；
+其它工程下完全不加载。
+
 ## 快捷键
 
 > Leader 键为 `<Space>`
@@ -276,6 +316,35 @@ bun i -g gh-actions-language-server
 | n    | `<leader>do` | 单步跳出      |
 | n    | `<leader>b`  | 切换断点      |
 | n    | `<leader>dq` | 退出调试      |
+
+### Flutter
+
+> 仅在含 `pubspec.yaml` 的工程中生效。`<leader>f` 已被 Telescope 占用，故热路径走功能键。
+
+| 模式 | 按键         | 功能                     |
+| ---- | ------------ | ------------------------ |
+| n    | `<F4>`       | 选择目标设备             |
+| n    | `<F5>`       | 启动调试会话 (DAP)       |
+| n    | `<F6>`       | 热重载                   |
+| n    | `<F7>`       | 热重启                   |
+| n    | `<leader>b`  | 切换断点                 |
+| n    | `<leader>dq` | 终止会话                 |
+| n    | `<leader>ot` | Flutter 任务面板         |
+
+命令：`:FlutterDevices` `:FlutterEmulators` `:FlutterRun` `:FlutterQuit`
+`:FlutterReload` `:FlutterRestart` `:FlutterReloadOnSave`
+
+保存 `.dart` 文件时默认自动热重载，用 `:FlutterReloadOnSave` 关闭。
+
+> [!NOTE]
+> Flutter/Dart 的 DAP server 不使用 `runInTerminal`，`flutter run` 的日志和 `print()`
+> 全部走 output 事件进入 **REPL** 分栏，dap-view 的 **Console** 分栏对这类会话永远是
+> "No terminal for the current session"。所以会话启动时会自动切到 REPL。
+
+`<leader>ot` 面板里同时有两类条目：`pub get` / `analyze` / `test` / `build` 这些是真正的
+overseer task；`run (debug)` / `hot reload` / `hot restart` / `select device` 是代理条目，
+选中后直接派发到上面的命令（和 cmake-tools 的条目是同一套机制）。运行统一走 DAP，
+因此 `flutter run` 和断点调试是同一个会话。
 
 ### CPH (竞赛)
 

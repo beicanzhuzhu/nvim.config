@@ -204,12 +204,18 @@ lazy.command_stub("OverseerRun", load_overseer)
 lazy.command_stub("OverseerShell", load_overseer)
 lazy.command_stub("OverseerTaskAction", load_overseer)
 
+local dap_loaded = false
+
 local function load_dap()
+	if dap_loaded then
+		return
+	end
 	vim.pack.add({
 		{ src = "https://codeberg.org/mfussenegger/nvim-dap" },
 		{ src = "https://github.com/igorlfs/nvim-dap-view" },
 	})
 	require("plugins.dap")
+	dap_loaded = true
 end
 
 --------------------------------------camke-tools---------------------------------------
@@ -268,3 +274,30 @@ lazy.keymap_stub("n", "<leader>do", load_dap, { desc = "DAP Step Out" })
 lazy.keymap_stub("n", "<Leader>b", load_dap, { desc = "DAP Toggle Breakpoint" })
 lazy.keymap_stub("n", "<Leader>dq", load_dap, { desc = "DAP Quit" })
 lazy.keymap_stub("n", "<Leader>dv", load_dap, { desc = "DAP View Toggle" })
+
+---------------------------------------- flutter ----------------------------------------
+
+local flutter_loaded = false
+
+local function load_flutter()
+	if flutter_loaded then
+		return
+	end
+
+	-- project 模块无插件依赖, 只在这里做一次向上查找 pubspec.yaml
+	if not require("flutter.project").root() then
+		return
+	end
+
+	load_overseer()
+	load_dap()
+	require("flutter").setup()
+
+	flutter_loaded = true
+end
+
+-- 只在进入含 pubspec.yaml 的工程时才加载
+vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "DirChanged" }, {
+	group = vim.api.nvim_create_augroup("LazyFlutter", { clear = true }),
+	callback = load_flutter,
+})

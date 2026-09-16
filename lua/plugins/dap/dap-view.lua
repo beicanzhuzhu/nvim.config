@@ -46,7 +46,8 @@ require("dap-view").setup({
 			size = 0.3,
 			position = "right",
 			-- List of debug adapters for which the terminal should be ALWAYS hidden
-			hide = {},
+			-- flutter/dart 的 DAP server 不用 runInTerminal, 压根没有终端可显示
+			hide = { "flutter", "dart" },
 		},
 	},
 	icons = {
