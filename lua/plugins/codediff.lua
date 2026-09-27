@@ -108,7 +108,7 @@ require("codediff").setup({
 			fold_close_all = "zM", -- Close all folds in tree
 		},
 		history = {
-			select = "<CR>", -- Select commit/file or toggle expand
+			select = "l", -- Select commit/file or toggle expand
 			toggle_view_mode = "i", -- Toggle between 'list' and 'tree' views
 			refresh = "R", -- Refresh history (re-fetch commits)
 			-- Fold keymaps (Vim-style, apply to directory nodes only)
