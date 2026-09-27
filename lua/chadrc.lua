@@ -52,8 +52,8 @@ M.colorify = {
 -- M.nvdash = { load_on_startup = true }
 M.ui = {
 	tabufline = {
-		enabled = false,
-		lazyload = false,
+		enabled = true,
+		lazyload = true,
 	},
 
 	telescope = { style = "borderless" },
