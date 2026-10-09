@@ -28,8 +28,19 @@ local lsp_servers = {
 	"make_ls",
 }
 
--- you need have vue-language-server exe in your PATH !
-local vue_language_server_path = vim.fn.exepath("vue-language-server")
+-- vtsls expects the @vue/language-server package directory here, not the
+-- vue-language-server executable itself.
+local vue_language_server_executable = vim.fn.exepath("vue-language-server")
+local vue_language_server_realpath = vim.uv.fs_realpath(vue_language_server_executable)
+local vue_language_server_path = vue_language_server_realpath
+		and vim.fs.dirname(vim.fs.dirname(vue_language_server_realpath))
+	or ""
+
+local typescript_executable = vim.fn.exepath("tsc")
+local typescript_realpath = vim.uv.fs_realpath(typescript_executable)
+local typescript_sdk_path = typescript_realpath
+		and vim.fs.joinpath(vim.fs.dirname(vim.fs.dirname(typescript_realpath)), "lib")
+	or ""
 
 local vue_plugin = {
 	name = "@vue/typescript-plugin",
@@ -37,6 +48,14 @@ local vue_plugin = {
 	languages = { "vue" },
 	configNamespace = "typescript",
 }
+
+vim.lsp.config("vue_ls", {
+	cmd = {
+		"vue-language-server",
+		"--stdio",
+		"--tsdk=" .. typescript_sdk_path,
+	},
+})
 
 vim.lsp.config("clangd", {
 	cmd = {
@@ -47,6 +66,17 @@ vim.lsp.config("clangd", {
 })
 
 -- dartls 的配置见 after/lsp/dartls.lua
+
+vim.lsp.config("basedpyright",{
+	settings = {
+		basedpyright = {
+            analysis = {
+                typeCheckingMode = "basic",
+                diagnosticMode = "openFilesOnly",
+            },
+        },
+	}
+})
 
 vim.lsp.config("vtsls", {
 	settings = {
@@ -149,5 +179,6 @@ vim.diagnostic.config({
 		},
 	},
 })
+
 
 vim.lsp.enable(lsp_servers)
