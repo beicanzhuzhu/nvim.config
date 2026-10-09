@@ -99,9 +99,22 @@ map("n", "<leader>u", function()
 	vim.fn.winrestview(view)
 end, { desc = "Yank whole file without moving cursor" })
 
+-- 格式化整个文件. normal 模式下不带 range, conform 即格式化整个 buffer.
+-- 返回 false 表示没有任何 formatter 被调用(该文件类型没配, 且没有 LSP 兜底).
 map("n", "<leader>F", function()
-	vim.g.autoformat_enabled = not vim.g.autoformat_enabled
-end, { desc = "Toggle autoformat" })
+	local formatted = require("conform").format({
+		lsp_format = "fallback",
+		timeout_ms = 2000,
+	})
+
+	if not formatted then
+		local ft = vim.bo.filetype
+		vim.notify(
+			("没有可用的格式化器: %s"):format(ft ~= "" and ft or "(无文件类型)"),
+			vim.log.levels.WARN
+		)
+	end
+end, { desc = "Format buffer" })
 
 -- W 也可以保存
 vim.api.nvim_create_user_command("W", "w", { desc = "write!" })
