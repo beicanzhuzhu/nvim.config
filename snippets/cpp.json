@@ -44,5 +44,10 @@
       "}"
     ],
     "description": "cf风格板子"
+  },
+  "guard": {
+    "prefix": "guard",
+    "body": ["#ifndef ${1:XXX_H}", "#define $1", "", "$0", "", "#endif  // $1"],
+    "description": "header guard. input once, reuse in ifndef/define/endif"
   }
 }

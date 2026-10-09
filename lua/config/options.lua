@@ -44,7 +44,9 @@ opt.softtabstop = tablen
 opt.shiftwidth = tablen
 opt.expandtab = false
 opt.autoindent = true
-opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+opt.indentexpr = function()
+	return require("nvim-treesitter").indentexpr()
+end
 
 -- use conform
 -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -83,13 +85,8 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.smoothscroll = true
 
--- Persistent undo
-local undodir = vim.fn.stdpath("data") .. "/undodir"
-if vim.fn.isdirectory(undodir) == 0 then
-	vim.fn.mkdir(undodir, "p")
-end
-
-opt.undodir = undodir
+-- Persistent undo（undodir 不存在时 nvim 写入 undo 文件会自动创建）
+opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 opt.undofile = true
 
 -- Search
@@ -105,10 +102,10 @@ opt.foldlevel = 99
 opt.foldcolumn = "1"
 opt.foldlevelstart = 99
 opt.foldenable = true
-vim.o.fillchars = "eob: ,fold: ,foldopen: ,foldsep: ,foldinner: ,foldclose: "
+opt.fillchars = { eob = " ", fold = " ", foldopen = " ", foldsep = " ", foldinner = " ", foldclose = " " }
 
 vim.filetype.add({
 	extension = {
-		asm = 'nasm',
-	}
+		asm = "nasm",
+	},
 })

@@ -1,7 +1,10 @@
 local lsp_servers = {
+	"astro",
 	"lua_ls",
 	"rust_analyzer",
+	"tombi",
 	"clangd",
+	"sourcekit",
 	"basedpyright",
 	"ruff",
 	"bashls",
@@ -9,6 +12,7 @@ local lsp_servers = {
 	"gopls",
 	"zls",
 	"dartls",
+	"docker_language_server",
 	"unocss",
 	"tailwindcss",
 	"dockerls",
@@ -67,15 +71,25 @@ vim.lsp.config("clangd", {
 
 -- dartls 的配置见 after/lsp/dartls.lua
 
-vim.lsp.config("basedpyright",{
+vim.lsp.config("basedpyright", {
 	settings = {
 		basedpyright = {
-            analysis = {
-                typeCheckingMode = "basic",
-                diagnosticMode = "openFilesOnly",
-            },
-        },
-	}
+			analysis = {
+				typeCheckingMode = "basic",
+				diagnosticMode = "openFilesOnly",
+			},
+		},
+	},
+})
+
+vim.lsp.config("astro", {
+	init_options = {
+		typescript = {
+			-- NOTE: 注意 目前只适配 ts6
+			-- bun add -g typescript@6
+			tsdk = vim.fn.expand("~/.bun/install/global/node_modules/typescript/lib"),
+		},
+	},
 })
 
 vim.lsp.config("vtsls", {

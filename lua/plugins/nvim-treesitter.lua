@@ -45,6 +45,7 @@ ts.setup({
 	},
 })
 
+-- 自动启用 Treesitter 高亮
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("TSHighlight", {
 		clear = true,

@@ -13,13 +13,18 @@ map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
 -- map("n", "<C-z>", "<cmd>undo<CR>", { desc = "Undo" })
 map({ "n", "v" }, "d", '"_d', { desc = "Delete to black hole register" })
-map("n", "<leader>c", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
+map("n", { "<Esc>", "<leader>c" }, "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Window navigation (Ctrl + hjkl)
 map("n", "<C-h>", "<C-w>h", { desc = "Focus left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Focus below window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Focus above window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
+
+-- 清除多光标（默认 CTRL-L 的清除功能被上面的 <C-l> 覆盖了）
+map("n", "<C-;>", function()
+	vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace("nvim.multicursor"), 0, -1)
+end, { desc = "Clear multicursors" })
 
 -- Window splitting (leader + hjkl)
 -- map("n", "<leader>l", "<cmd>set splitright<CR><cmd>vsplit<CR>", { desc = "Split right" })
@@ -50,29 +55,16 @@ map("n", "<leader>t", function()
 	})
 end, { desc = "NvChad floating terminal" })
 
-map("t", "<leader>t", function()
-	require("nvchad.term").toggle({
-		pos = "float",
-		id = "floatTerm",
-	})
-end, { desc = "Toggle NvChad floating terminal" })
-
 map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "bn" })
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "bp" })
 
 -- move code
-map("n", "<A-k>", ":move .-2<CR>==", { noremap = true, silent = true })
-map("n", "<A-j>", ":move .+1<CR>==", { noremap = true, silent = true })
-
-map("n", "<A-Up>", ":move .-2<CR>==", { noremap = true, silent = true })
-map("n", "<A-Down>", ":move .+1<CR>==", { noremap = true, silent = true })
+map("n", { "<A-k>", "<A-Up>" }, ":move .-2<CR>==", { noremap = true, silent = true })
+map("n", { "<A-j>", "<A-Down>" }, ":move .+1<CR>==", { noremap = true, silent = true })
 
 -- visual mode 移动选中块
-map("v", "<A-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
-map("v", "<A-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
-
-map("v", "<A-Up>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
-map("v", "<A-Down>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+map("v", { "<A-k>", "<A-Up>" }, ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+map("v", { "<A-j>", "<A-Down>" }, ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -- change x to helix mode
 map("n", "x", function()
@@ -149,35 +141,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		local telescope_builtin = require("telescope.builtin")
 
-		-- add omnifunc to cmp with lsp
-		vim.bo[buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
 		-- Toggle inlay hints if supported
-		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+		if client and client:supports_method("textDocument/inlayHint") then
 			map("n", "<leader>ih", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
-			end, { buffer = buf, desc = "LSP: Toggle inlay hints" })
+			end, { buf = buf, desc = "LSP: Toggle inlay hints" })
 		end
 
-		-- Navigation
-		map("n", "gD", vim.lsp.buf.declaration, { buffer = buf, desc = "LSP: Go to declaration" })
-		map("n", "gd", telescope_builtin.lsp_definitions, { buffer = buf, desc = "LSP: Go to definition" })
-		map("n", "gi", telescope_builtin.lsp_implementations, { buffer = buf, desc = "LSP: Go to implementation" })
-		map("n", "gr", telescope_builtin.lsp_references, { buffer = buf, desc = "LSP: Find references" })
-		map("n", "gy", telescope_builtin.lsp_type_definitions, { buffer = buf, desc = "LSP: Go to type definition" })
-
-		-- Code actions
-		map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = buf, desc = "LSP: Code action" })
-		map("n", "<leader>r", require("nvchad.lsp.renamer"), {
-			buffer = buf,
-			desc = "LSP: Rename symbol",
-		})
-
-		-- Diagnostics
-		-- map("n", "<leader>e", vim.diagnostic.open_float, { buffer = buf, desc = "LSP: Show diagnostics" })
-		-- map("n", "<leader>D", function()
-		-- 	vim.diagnostic.open_float({ source = true })
-		-- end, { buffer = buf, desc = "LSP: Show diagnostics with source" })
+		-- lsp keymaps
+		map("n", "grd", vim.lsp.buf.declaration, { buf = buf, desc = "LSP: Go to declaration" })
+		map("n", "gri", telescope_builtin.lsp_implementations, { buf = buf, desc = "LSP: Go to implementation" })
+		map("n", "grt", telescope_builtin.lsp_type_definitions, { buf = buf, desc = "LSP: Go to type definition" })
 
 		-- 快速复制lsp信息
 
@@ -190,7 +164,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			else
 				vim.notify("No diagnostic at cursor")
 			end
-		end, { buffer = buf, desc = "LSP: Copy current diagnostic" })
+		end, { buf = buf, desc = "LSP: Copy current diagnostic" })
 
 		-- <leader>Y: 复制当前文件所有的报错信息
 		map("n", "<leader>Y", function()
@@ -205,9 +179,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			else
 				vim.notify("No diagnostics in current buffer")
 			end
-		end, { buffer = buf, desc = "LSP: Copy all diagnostics" })
-
-		-- Override diagnostic float with tiny-inline-diagnostic
-		vim.diagnostic.open_float = require("tiny-inline-diagnostic.override").open_float
+		end, { buf = buf, desc = "LSP: Copy all diagnostics" })
 	end,
 })

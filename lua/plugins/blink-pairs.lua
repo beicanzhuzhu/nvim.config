@@ -15,6 +15,8 @@ pairs.setup({
 	mappings = {
 		enabled = true,
 		cmdline = true,
+		-- telescope 里 ' 是精确匹配前缀，不要自动补全引号
+		disabled_filetypes = { "TelescopePrompt" },
 	},
 
 	highlights = {

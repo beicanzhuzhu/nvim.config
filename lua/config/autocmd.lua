@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 			return
 		end
 		local file = vim.uv.fs_realpath(event.match) or event.match
-		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+		vim.fs.mkdir(vim.fs.dirname(file), { parents = true })
 	end,
 })
 
@@ -15,8 +15,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
 	callback = function()
-		-- 在 nvim 0.12 中使用 on_yank 但是在 nvim 0.13 中请使用 hl_op
-		vim.hl.on_yank({
+		vim.hl.hl_op({
 			higroup = "IncSearch",
 			timeout = 150,
 		})
@@ -52,6 +51,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
-		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buf = event.buf, silent = true })
 	end,
 })

@@ -16,7 +16,7 @@ vim.pack.add({
 
 	{ src = "https://github.com/nvchad/base46" },
 	{ src = "https://github.com/nvzone/volt" },
-	{ src = "https://github.com/nvchad/ui" },
+	{ src = "https://github.com/nvchad/ui", name = "nvchad-ui" },
 
 	-- { src = "https://github.com/nvim-mini/mini.indentscope" },
 	{ src = "https://github.com/saghen/blink.indent" },
@@ -48,9 +48,9 @@ vim.pack.add({
 	-- git tools
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	-- { src = "https://github.com/esmuellert/codediff.nvim" },
+
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
-	{ src = "https://github.com/folke/flash.nvim" },
 
 	-- nvim-ufo
 	{ src = "https://github.com/kevinhwang91/promise-async" }, -- ufo dependent
@@ -86,13 +86,13 @@ vim.pack.add({
 	-- overseer
 	-- { src = "https://github.com/stevearc/overseer.nvim" },
 
-	-- { src = "https://github.com/ShangYJQ/sloat.git" },
-
 	-- { src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	-- { src = "https://github.com/MunifTanjim/nui.nvim" }, -- dependent for neo-tree
 
 	-- cph from bcyz
 	-- { src = "https://github.com/beicanzhuzhu/cph.nvim" },
+}, {
+	load = true,
 })
 
 require("plugins.nvim-treesitter")
@@ -109,14 +109,11 @@ require("plugins.telescope")
 require("plugins.render-markdown")
 require("plugins.tiny-inline-diagnostics")
 require("plugins.nvim-ts-autotag")
--- require("plugins.sloat") -- lazy loaded
--- require("plugins.oil")
 -- require("plugins.neo-tree") -- lazy loaded
 require("plugins.nvim-ufo")
 require("plugins.todo-comments")
 require("plugins.blink-indent")
 -- require("plugins.tiny-cmdline")
-require("plugins.flash")
 -- require("plugins.mini-files")
 -- require("plugins.multicursor-nvim") -- lazy loaded
 -- require("plugins.mini-indentscope")
@@ -128,24 +125,14 @@ local lazy = require("utlis.lazy")
 
 ---------------------------------------- multicursor ----------------------------------------
 
-local function load_multicursor()
-	vim.pack.add({ { src = "https://github.com/jake-stewart/multicursor.nvim" } })
-	require("plugins.multicursor-nvim")
-end
-
-lazy.keymap_stub({ "n", "x" }, "<S-c>", load_multicursor, { desc = "Multicursor: add cursor down" })
-lazy.keymap_stub({ "n", "x" }, "<leader><S-c>", load_multicursor, { desc = "Multicursor: skip cursor down" })
-lazy.keymap_stub({ "n", "x" }, "<leader>m", load_multicursor, { desc = "Multicursor: clear cursors" })
-
----------------------------------------- sloat ----------------------------------------
-
--- local function load_sloat()
--- 	vim.pack.add({ { src = "https://github.com/ShangYJQ/sloat.git" } })
--- 	require("plugins.sloat")
+-- local function load_multicursor()
+-- 	vim.pack.add({ { src = "https://github.com/jake-stewart/multicursor.nvim" } })
+-- 	require("plugins.multicursor-nvim")
 -- end
 --
--- lazy.keymap_stub("n", "<leader>t", load_sloat, { noremap = true, silent = true, desc = "Toggle sloat term" })
--- lazy.command_stub("Sloat", load_sloat)
+-- lazy.keymap_stub({ "n", "x" }, "<S-c>", load_multicursor, { desc = "Multicursor: add cursor down" })
+-- lazy.keymap_stub({ "n", "x" }, "<leader><S-c>", load_multicursor, { desc = "Multicursor: skip cursor down" })
+-- lazy.keymap_stub({ "n", "x" }, "<leader>m", load_multicursor, { desc = "Multicursor: clear cursors" })
 
 ---------------------------------------- neo-tree ----------------------------------------
 

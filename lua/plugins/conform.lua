@@ -4,9 +4,15 @@ require("conform").setup({
 
 	formatters = {
 		clang_format = {
-			prepend_args = {
-				"--style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Always, TabWidth: 4, AllowShortFunctionsOnASingleLine: None}",
-			},
+			prepend_args = function(_, ctx)
+				if vim.fn.findfile(".clang-format", vim.fn.fnamemodify(ctx.filename, ":h") .. ";") ~= "" then
+					return { "--style=file" }
+				end
+
+				return {
+					"--style={BasedOnStyle: LLVM, IndentWidth: 4, UseTab: Always, TabWidth: 4, AllowShortFunctionsOnASingleLine: None}",
+				}
+			end,
 		},
 		rustfmt = {
 			args = { "--edition", "2021", "--config", "hard_tabs=true,tab_spaces=4", "--emit", "stdout" },
@@ -36,10 +42,19 @@ require("conform").setup({
 		html = { "oxfmt" },
 		css = { "oxfmt" },
 
+		-- Astro 暂时只能用 Prettier
+		astro = { "prettier" },
+
 		-- clang_format
 		c = { "clang_format" },
 		cpp = { "clang_format" },
+		objc = { "clang_format" },
+
 		cmake = { "cmake_format" },
+
+		-- swift
+
+		swift = { "swift" },
 
 		-- xmllint
 		xml = { "xmllint" },

@@ -23,11 +23,11 @@ M.base46 = {
 		"blink-pair",
 		"dap",
 		"render-markdown",
-		"flash",
 		"telescope",
 		"tiny-inline-diagnostic",
 		"todo",
 		"lsp",
+		"gitsigns",
 	},
 
 	hl_add = {
@@ -52,8 +52,8 @@ M.colorify = {
 -- M.nvdash = { load_on_startup = true }
 M.ui = {
 	tabufline = {
-		enabled = false,
-		lazyload = false,
+		enabled = true,
+		lazyload = true,
 	},
 
 	telescope = { style = "borderless" },
@@ -96,6 +96,7 @@ M.nvdash = {
 		{ txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
 		{ txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
 		{ txt = "  Git Status", keys = "gh", cmd = "Telescope git_status" },
+		{ txt = "  Code Diff", keys = "cd", cmd = "CodeDiff" },
 		{ txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
 		{ txt = "󰚰  Update", keys = "up", cmd = ":lua vim.pack.update()" },
 		{ txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },

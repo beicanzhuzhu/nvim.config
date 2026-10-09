@@ -113,6 +113,7 @@ require("neo-tree").setup({
 			},
 			always_show = { -- remains visible even if other settings would normally hide it
 				--".gitignored",
+				".vitepress",
 			},
 			always_show_by_pattern = { -- uses glob style patterns
 				".env*",
@@ -226,5 +227,5 @@ require("neo-tree").setup({
 local map = vim.keymap.set
 
 map("n", "<leader>e", function()
-	require("neo-tree.command").execute({ toggle = true })
+	require("neo-tree.command").execute({ toggle = true, source = "last" })
 end, { silent = true, desc = "Neotree toggle" })

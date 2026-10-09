@@ -4,57 +4,44 @@ local cmp = require("blink.cmp")
 
 cmp.build():pwait(60000)
 
----@param ctx blink.cmp.Context
----@param items blink.cmp.CompletionItem[]
----@return blink.cmp.CompletionItem[]
-local function prefix_only_items(ctx, items)
-	local keyword = ctx:get_keyword():lower()
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = { "c", "cpp", "objc", "objcpp", "cuda" },
+-- 	callback = function()
+-- 		-- clangd returns an empty complete result when "<" triggers completion in templates.
+-- 		-- Block that trigger so typing the template argument asks clangd again.
+-- 		vim.b.blink_cmp = vim.tbl_deep_extend("force", vim.b.blink_cmp or {}, {
+-- 			completion = {
+-- 				trigger = {
+-- 					show_on_blocked_trigger_characters = { " ", "\n", "\t", "<" },
+-- 				},
+-- 			},
+-- 		})
+-- 	end,
+-- })
 
-	if keyword == "" then
-		return {}
-	end
+---@class ProviderCycleItem
+---@field name string
+---@field providers string[]
 
-	return vim.tbl_filter(function(item)
-		local text = (item.filterText or item.label or ""):lower()
-		return vim.startswith(text, keyword)
-	end, items)
-end
-
----@param source blink.cmp.Source
----@param ctx blink.cmp.Context
----@param callback fun(response?: blink.cmp.CompletionResponse)
-local function get_prefix_only_completions(source, ctx, callback)
-	return source:get_completions(ctx, function(response)
-		response = response or { items = {} }
-		response.items = prefix_only_items(ctx, response.items or {})
-
-		response.is_incomplete_forward = true
-		response.is_incomplete_backward = true
-
-		callback(response)
-	end)
-end
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "c", "cpp", "objc", "objcpp", "cuda" },
-	callback = function()
-		-- clangd returns an empty complete result when "<" triggers completion in templates.
-		-- Block that trigger so typing the template argument asks clangd again.
-		vim.b.blink_cmp = vim.tbl_deep_extend("force", vim.b.blink_cmp or {}, {
-			completion = {
-				trigger = {
-					show_on_blocked_trigger_characters = { " ", "\n", "\t", "<" },
-				},
-			},
-		})
-	end,
-})
+---@type ProviderCycleItem[]
+local provider_cycle = {
+	{ name = "snippets", providers = { "snippets" } },
+	{
+		name = "default",
+		providers = {
+			"lsp",
+			"dadbod_grip",
+			"path",
+			"buffer",
+		},
+	},
+}
 
 cmp.setup({
 	enabled = function()
-		-- :set buftype?
 		-- :set filetype?
 		local ft = vim.bo.filetype
+		-- :set buftype?
 		local bt = vim.bo.buftype
 
 		-- disable for dapui
@@ -85,16 +72,42 @@ cmp.setup({
 		-- ["<C-n>"] = { "select_next", "fallback" },
 		-- ["<C-p>"] = { "select_prev", "fallback" },
 		["<C-e>"] = { "hide", "fallback" },
+
+		-- 切换补全源列表
+		["<C-a>"] = {
+			function(cmp_local)
+				local index = (vim.b.blink_provider_cycle_index or 0) + 1
+
+				if index > #provider_cycle then
+					index = 1
+				end
+
+				vim.b.blink_provider_cycle_index = index
+
+				local current = provider_cycle[index]
+
+				vim.notify("Completion source: " .. current.name, vim.log.levels.INFO, { title = "blink.cmp" })
+
+				return cmp_local.show({
+					providers = current.providers,
+				})
+			end,
+		},
 	},
 
-	fuzzy = {
-		implementation = "prefer_rust_with_warning",
-		sorts = { "exact", "score", "sort_text" },
-	},
+	fuzzy = { implementation = "prefer_rust_with_warning" },
 
 	snippets = { preset = "default" },
 
 	completion = {
+
+		list = {
+			selection = {
+				preselect = true,
+				auto_insert = false,
+			},
+		},
+
 		documentation = {
 			auto_show = false,
 			auto_show_delay_ms = 800,
@@ -108,7 +121,15 @@ cmp.setup({
 
 	cmdline = {
 		enabled = true,
-		completion = { menu = { auto_show = false } },
+		completion = {
+			menu = { auto_show = false },
+			list = {
+				selection = {
+					preselect = false,
+					auto_insert = true,
+				},
+			},
+		},
 		sources = {
 			default = { "cmdline" },
 		},
@@ -130,18 +151,15 @@ cmp.setup({
 
 	sources = {
 
-		default = { "lsp", "dadbod_grip", "snippets", "path", "buffer" },
+		default = provider_cycle[2].providers,
 
 		providers = {
 
 			snippets = {
 				score_offset = 100,
-				override = {
-					get_completions = get_prefix_only_completions,
-				},
 			},
 
-			lsp = { score_offset = 90 },
+			lsp = { score_offset = 100 },
 
 			path = { score_offset = 30 },
 
